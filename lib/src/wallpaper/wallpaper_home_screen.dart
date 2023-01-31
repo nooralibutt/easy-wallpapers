@@ -26,16 +26,16 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(context),
-    );
-  }
+    final controller = EasyWallpaperController.of(context);
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: const HomeHeaderText(name: 'Wallpapers'),
-      backgroundColor: Colors.transparent,
+    return Scaffold(
+      appBar: AppBar(
+        title: HomeHeaderText(
+            leadingText: controller.leadingTitle, name: controller.title!),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: _buildBody(context),
     );
   }
 

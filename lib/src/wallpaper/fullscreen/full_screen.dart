@@ -12,8 +12,9 @@ import 'menu_buttons.dart';
 
 class FullScreenView extends StatefulWidget {
   static const String routeName = "/fullScreenView";
+  final FullScreenArguments arguments;
 
-  const FullScreenView({super.key});
+  const FullScreenView({super.key, required this.arguments});
 
   @override
   State<FullScreenView> createState() => _FullScreenViewState();
@@ -29,12 +30,10 @@ class _FullScreenViewState extends State<FullScreenView> {
 
   @override
   Widget build(BuildContext context) {
-    final arguments =
-        ModalRoute.of(context)?.settings.arguments as FullScreenArguments;
     if (selectedIndex == -1) {
-      selectedIndex = arguments.selectedIndex ?? 0;
+      selectedIndex = widget.arguments.selectedIndex ?? 0;
     }
-    final list = arguments.list ?? [];
+    final list = widget.arguments.list ?? [];
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -72,7 +71,7 @@ class _FullScreenViewState extends State<FullScreenView> {
             left: 0,
             right: 0,
             top: MediaQuery.of(context).padding.top / 2 + 70,
-            child: MenuButtons(arguments, _fullScreenGlobalKey),
+            child: MenuButtons(widget.arguments, _fullScreenGlobalKey),
           ),
           Positioned(
             top: MediaQuery.of(context).padding.top / 2 + 110,

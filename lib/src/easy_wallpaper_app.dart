@@ -1,6 +1,8 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
+import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
+import 'package:easy_wallpapers/src/utilities/prefs.dart';
 import 'package:easy_wallpapers/src/wallpaper/category/category_screen.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/full_screen.dart';
 import 'package:easy_wallpapers/src/wallpaper/wallpaper_home_screen.dart';
@@ -33,6 +35,7 @@ class EasyWallpaperApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Prefs.instance.init();
     final wallpaperCategories = NetworkManager.getCategories(wallpaperUrls);
 
     return EasyWallpaperController(
@@ -54,9 +57,11 @@ class EasyWallpaperApp extends StatelessWidget {
             case FavoriteWallpapersScreen.routeName:
               return _generatePage(const FavoriteWallpapersScreen());
             case CategoryScreen.routeName:
-              return _generatePage(const CategoryScreen());
+              return _generatePage(
+                  CategoryScreen(category: settings.arguments as String));
             case FullScreenView.routeName:
-              return _generatePage(const FullScreenView());
+              return _generatePage(FullScreenView(
+                  arguments: settings.arguments as FullScreenArguments));
           }
           return null;
         },

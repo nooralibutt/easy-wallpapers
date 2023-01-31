@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatefulWidget {
   static const String routeName = "/categoryScreen";
-
-  const CategoryScreen({super.key});
+  final String category;
+  const CategoryScreen({super.key, required this.category});
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
@@ -25,10 +25,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String category = ModalRoute.of(context)?.settings.arguments as String;
+    final controller = EasyWallpaperController.of(context);
+
     return Scaffold(
-      appBar: _buildAppBar(category),
-      body: _buildBody(context, category),
+      appBar: AppBar(
+        title: HomeHeaderText(
+            leadingText: controller.leadingTitle, name: controller.title!),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: _buildBody(context, widget.category),
     );
   }
 
