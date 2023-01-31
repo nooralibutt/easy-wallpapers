@@ -1,0 +1,21 @@
+name: easy_wallpapers
+description: A new Flutter package project.
+version: 0.0.1
+homepage: https://github.com/nooralibutt/easy-wallpapers
+repository: https://github.com/nooralibutt/easy-wallpapers
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+# The following section is specific to Flutter packages.
+flutter:

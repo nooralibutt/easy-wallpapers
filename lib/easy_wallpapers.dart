@@ -1,0 +1,1 @@
+library easy_wallpapers;
