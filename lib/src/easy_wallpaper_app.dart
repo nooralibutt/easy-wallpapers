@@ -25,7 +25,7 @@ class EasyWallpaperApp extends StatelessWidget {
   const EasyWallpaperApp({
     Key? key,
     required this.wallpaperUrls,
-    this.title,
+    required this.title,
     this.leadingTitle,
     this.bgImage,
     this.topSafeArea = true,
