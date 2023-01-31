@@ -1,5 +1,6 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
+import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/category/category_screen.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/full_screen.dart';
 import 'package:easy_wallpapers/src/wallpaper/wallpaper_home_screen.dart';
@@ -19,7 +20,7 @@ class EasyWallpaperApp extends StatelessWidget {
   final bool topSafeArea;
 
   /// This will be list of all wallpaper URLs that a user wants to add inn  the package
-  final List<String> wallpaperUrls;
+  final Map<String, dynamic> wallpaperUrls;
 
   const EasyWallpaperApp({
     Key? key,
@@ -32,6 +33,8 @@ class EasyWallpaperApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final wallpaperCategories = NetworkManager.getCategories(wallpaperUrls);
+
     return EasyWallpaperController(
       wallpaperUrls: wallpaperUrls,
       leadingTitle: leadingTitle,
@@ -39,6 +42,7 @@ class EasyWallpaperApp extends StatelessWidget {
       context: context,
       bgImage: bgImage,
       topSafeArea: topSafeArea,
+      categories: wallpaperCategories ?? [],
 
       /// Package has its own navigation
       child: Navigator(
@@ -77,7 +81,7 @@ class EasyWallpaperApp extends StatelessWidget {
     final bool topSafeArea = true,
 
     /// This will be list of all wallpaper URLs that a user wants to add inn  the package
-    required final List<String> wallpaperUrls,
+    required final Map<String, dynamic> wallpaperUrls,
   }) =>
       Navigator.of(context).push(
         MaterialPageRoute(

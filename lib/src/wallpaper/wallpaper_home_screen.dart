@@ -1,3 +1,5 @@
+import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
+import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/category_builder.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
 import 'package:easy_wallpapers/src/widgets/header_text.dart';
@@ -59,7 +61,7 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
   }
 
   Widget _fetchCategoryData(BuildContext context) {
-    final categories = NetworkManager.getCategories();
+    final categories = EasyWallpaperController.of(context).categories;
     return Column(
       children: [
         CategoryBuilder(categories),
@@ -69,7 +71,9 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
   }
 
   Widget _fetchTrendingWallpapers(BuildContext context, String category) {
-    final wallpapers = NetworkManager.getWallpapersByCategory(category) ?? [];
+    final wallpapers = NetworkManager.getWallpapersByCategory(
+            category, EasyWallpaperController.of(context).wallpaperUrls) ??
+        [];
     if (wallpapers.isEmpty) {
       return const Text(
         'There is something wrong!\nPlease check your internet connection',

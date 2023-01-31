@@ -1,3 +1,5 @@
+import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
+import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
 import 'package:easy_wallpapers/src/widgets/header_text.dart';
 import 'package:easy_wallpapers/src/widgets/spacing_widgets.dart';
@@ -57,7 +59,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   Widget _fetchTrendingWallpapers(BuildContext context, String category) {
-    final wallpapers = NetworkManager.getWallpapersByCategory(category) ?? [];
+    final wallpapers = NetworkManager.getWallpapersByCategory(
+            category, EasyWallpaperController.of(context).wallpaperUrls) ??
+        [];
     return WallpaperListing(wallpapers, _scrollController);
   }
 }

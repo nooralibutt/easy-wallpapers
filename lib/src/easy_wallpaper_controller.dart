@@ -1,3 +1,4 @@
+import 'package:easy_wallpapers/src/models/wallpaper_category.dart';
 import 'package:flutter/material.dart';
 
 class EasyWallpaperController extends InheritedWidget {
@@ -9,6 +10,7 @@ class EasyWallpaperController extends InheritedWidget {
     required this.topSafeArea,
     required this.wallpaperUrls,
     required super.child,
+    required this.categories,
     required this.context,
   });
 
@@ -25,8 +27,9 @@ class EasyWallpaperController extends InheritedWidget {
   final bool topSafeArea;
 
   /// This will be list of all wallpaper URLs that a user wants to add inn  the package
-  final List<String> wallpaperUrls;
+  final Map<String, dynamic> wallpaperUrls;
 
+  final List<WallpaperCategory> categories;
   final BuildContext context;
 
   static EasyWallpaperController? maybeOf(BuildContext context) {
