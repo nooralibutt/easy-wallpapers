@@ -1,5 +1,6 @@
 import 'dart:async' show Future;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 Future showCustomAlertDialog(BuildContext context, String title, String message,
@@ -53,4 +54,10 @@ Future showRewardedAdAlertDialog(BuildContext context,
     barrierDismissible: false,
     builder: (BuildContext context) => alert,
   );
+}
+
+void printLog(String str) {
+  if (kDebugMode) {
+    print(str);
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:easy_wallpapers/src/models/wallpaper_category.dart';
+import 'package:easy_wallpapers/src/utilities/constants.dart';
 
 class NetworkManager {
   static final List<WallpaperCategory> _categories = [];
@@ -14,7 +15,9 @@ class NetworkManager {
       });
 
       return _categories;
-    } catch (error) {}
+    } catch (error) {
+      printLog(error.toString());
+    }
     return null;
   }
 
@@ -33,7 +36,9 @@ class NetworkManager {
       wallpapers = List.from(docSnapshot);
       wallpaperUrls[category] = wallpapers;
       return wallpapers;
-    } catch (error) {}
+    } catch (error) {
+      printLog(error.toString());
+    }
     return null;
   }
 }

@@ -29,19 +29,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Theme.of(context).secondaryHeaderColor),
         title: HomeHeaderText(
             leadingText: controller.leadingTitle, name: controller.title!),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: _buildBody(context, widget.category),
-    );
-  }
-
-  AppBar _buildAppBar(String category) {
-    return AppBar(
-      title: HomeHeaderText(name: category),
-      backgroundColor: Colors.transparent,
     );
   }
 

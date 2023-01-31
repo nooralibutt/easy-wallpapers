@@ -15,8 +15,13 @@ class FavoriteWallpapersScreen extends StatefulWidget {
 
 class _FavoriteWallpapersScreenState extends State<FavoriteWallpapersScreen> {
   final ScrollController _scrollController = ScrollController();
-
   List<String> favWallpapers = Prefs.instance.getFavWallpapers();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +32,17 @@ class _FavoriteWallpapersScreenState extends State<FavoriteWallpapersScreen> {
   }
 
   AppBar _buildAppBar() {
+    final theme = Theme.of(context);
     return AppBar(
+      iconTheme: IconThemeData(color: theme.secondaryHeaderColor),
       centerTitle: true,
-      title: const Text(
+      title: Text(
         "Favorites",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+        style: theme.textTheme.headlineMedium!.copyWith(
+            fontWeight: FontWeight.bold, color: theme.secondaryHeaderColor),
       ),
       backgroundColor: Colors.transparent,
+      elevation: 0,
     );
   }
 
@@ -60,8 +69,6 @@ class _FavoriteWallpapersScreenState extends State<FavoriteWallpapersScreen> {
     final updatedWalls = Prefs.instance.getFavWallpapers();
     if (updatedWalls.length == favWallpapers.length) return;
 
-    setState(() {
-      favWallpapers = updatedWalls;
-    });
+    setState(() => favWallpapers = updatedWalls);
   }
 }

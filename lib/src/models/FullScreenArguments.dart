@@ -1,5 +1,3 @@
-
-
 class FullScreenArguments {
   List<String>? list;
   int? selectedIndex;

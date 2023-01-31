@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_icon.dart';
 import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
 import 'package:easy_wallpapers/src/models/color_filter_data.dart';
+import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_placeholder.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/components/wallpaper_info.dart';
 import 'package:easy_wallpapers/src/widgets/color_filter_preview_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../components/wallpaper_placeholder.dart';
 import 'menu_buttons.dart';
 
 class FullScreenView extends StatefulWidget {
@@ -112,7 +113,8 @@ class _FullScreenViewState extends State<FullScreenView> {
           Navigator.pop(_scaffoldKey.currentContext!);
         }
       },
-      icon: const Icon(Icons.clear));
+      icon: Icon(CupertinoIcons.clear_circled_solid,
+          color: Theme.of(context).secondaryHeaderColor));
 
   void _onPageChanged(int page) {
     setState(() {

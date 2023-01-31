@@ -32,7 +32,8 @@ class _FavouriteIconState extends State<FavouriteIcon> {
         onPressed: onFavPressed,
         icon: isFavourite
             ? const Icon(Icons.favorite, size: 30, color: Colors.red)
-            : const Icon(Icons.favorite_border, size: 30));
+            : Icon(Icons.favorite_border,
+                size: 30, color: Theme.of(context).secondaryHeaderColor));
   }
 
   void onFavPressed() {

@@ -30,7 +30,8 @@ class _WallpaperInfoState extends State<WallpaperInfo> {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => infoDialog(context),
-      icon: const Icon(Icons.info, size: 30, color: Colors.white),
+      icon: Icon(Icons.info,
+          size: 30, color: Theme.of(context).secondaryHeaderColor),
     );
   }
 
