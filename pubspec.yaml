@@ -12,6 +12,26 @@ dependencies:
   flutter:
     sdk: flutter
 
+  shared_preferences: ^2.0.17
+  package_info_plus: ^3.0.2
+  device_info_plus: ^8.0.0
+  wallpaper_manager_flutter: ^0.0.2
+  # to save wallpapers to gallery
+  image_gallery_saver: ^1.7.1
+  # to download wallpapers
+  dio: ^4.0.6
+  # to get storage permission from user for saving wallpapers
+  permission_handler: ^10.2.0
+  # to show progress of downloading wallpapers
+  sn_progress_dialog: ^1.1.2
+  # to show menu in full screen of wallpapers
+  circular_menu: ^2.0.1
+  # to show lock screen in wallpapers
+  intl: ^0.18.0
+  # to pick wallpapers from gallery upload files
+  image_picker: ^0.8.6+1
+  cached_network_image: ^3.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -19,3 +39,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+
+  assets:
+    - assets/images/
+    - assets/images/wallpapers/ios/
+    - assets/images/wallpapers/android/
