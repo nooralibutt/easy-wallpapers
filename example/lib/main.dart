@@ -41,6 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
           bgImage:
               'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
           placementBuilder: _addPlacements,
+          onTapEvent: _onTapEvent,
+          onSetOrDownloadWallpaper: _downloadWallpaper,
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -51,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
             title: 'Wallpapers',
             bgImage:
                 'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+            placementBuilder: _addPlacements,
+            onTapEvent: _onTapEvent,
+            onSetOrDownloadWallpaper: _downloadWallpaper,
           );
         },
         tooltip: 'Increment',
@@ -69,5 +74,13 @@ class _MyHomePageState extends State<MyHomePage> {
       default:
         return const SizedBox();
     }
+  }
+
+  void _onTapEvent(BuildContext context, WallpaperEventAction eventAction) {
+    print(eventAction.name);
+  }
+
+  Future<bool> _downloadWallpaper(BuildContext context) {
+    return Future.value(true);
   }
 }

@@ -163,13 +163,21 @@ class _MenuButtonsState extends State<MenuButtons> {
     HapticFeedback.mediumImpact();
 
     if (!await _isPermissionGranted()) return;
+
     if (context.mounted) {
-      final boundary = widget.fullScreenGlobalKey.currentContext!
-          .findRenderObject()! as RenderRepaintBoundary;
-      final ui.Image image = await boundary.toImage();
-      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      final list = byteData!.buffer.asUint8List();
-      _saveImage(list);
+      final controller = EasyWallpaperController.of(context);
+      if (controller.onSetOrDownloadWallpaper != null) {
+        await controller.onSetOrDownloadWallpaper?.call(context);
+      }
+
+      if (context.mounted) {
+        final boundary = widget.fullScreenGlobalKey.currentContext!
+            .findRenderObject()! as RenderRepaintBoundary;
+        final ui.Image image = await boundary.toImage();
+        final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+        final list = byteData!.buffer.asUint8List();
+        _saveImage(list);
+      }
     }
   }
 
@@ -245,8 +253,15 @@ class _MenuButtonsState extends State<MenuButtons> {
         title: const Text('Set wallpaper'),
         children: [
           SimpleDialogOption(
-            onPressed: () =>
-                Navigator.pop(context, WallpaperManagerFlutter.HOME_SCREEN),
+            onPressed: () async {
+              final controller = EasyWallpaperController.of(context);
+              if (controller.onSetOrDownloadWallpaper != null) {
+                await controller.onSetOrDownloadWallpaper?.call(context);
+              }
+              if (context.mounted) {
+                Navigator.pop(context, WallpaperManagerFlutter.HOME_SCREEN);
+              }
+            },
             child: Row(
               children: const [
                 Icon(Icons.home),
@@ -256,8 +271,15 @@ class _MenuButtonsState extends State<MenuButtons> {
             ),
           ),
           SimpleDialogOption(
-            onPressed: () =>
-                Navigator.pop(context, WallpaperManagerFlutter.LOCK_SCREEN),
+            onPressed: () async {
+              final controller = EasyWallpaperController.of(context);
+              if (controller.onSetOrDownloadWallpaper != null) {
+                await controller.onSetOrDownloadWallpaper?.call(context);
+              }
+              if (context.mounted) {
+                Navigator.pop(context, WallpaperManagerFlutter.LOCK_SCREEN);
+              }
+            },
             child: Row(
               children: const [
                 Icon(Icons.lock),
@@ -267,8 +289,15 @@ class _MenuButtonsState extends State<MenuButtons> {
             ),
           ),
           SimpleDialogOption(
-            onPressed: () =>
-                Navigator.pop(context, WallpaperManagerFlutter.BOTH_SCREENS),
+            onPressed: () async {
+              final controller = EasyWallpaperController.of(context);
+              if (controller.onSetOrDownloadWallpaper != null) {
+                await controller.onSetOrDownloadWallpaper?.call(context);
+              }
+              if (context.mounted) {
+                Navigator.pop(context, WallpaperManagerFlutter.BOTH_SCREENS);
+              }
+            },
             child: Row(
               children: const [
                 Icon(Icons.phone_iphone),

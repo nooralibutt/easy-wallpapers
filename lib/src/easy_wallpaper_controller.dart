@@ -15,6 +15,7 @@ class EasyWallpaperController extends InheritedWidget {
     required super.child,
     this.placementBuilder,
     this.onTapEvent,
+    this.onSetOrDownloadWallpaper,
     required this.categories,
     required this.context,
   });
@@ -36,6 +37,9 @@ class EasyWallpaperController extends InheritedWidget {
 
   /// [onTapEvent] will be call on every event preformed by the user
   final EventActionCallback? onTapEvent;
+
+  /// [onSetOrDownloadWallpaper] will be call when user set or download wallpaper
+  final Future<bool> Function(BuildContext)? onSetOrDownloadWallpaper;
 
   final List<WallpaperCategory> categories;
   final BuildContext context;

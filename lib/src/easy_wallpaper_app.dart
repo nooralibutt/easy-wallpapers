@@ -27,6 +27,9 @@ class EasyWallpaperApp extends StatelessWidget {
   /// [onTapEvent] will be call on every event preformed by the user
   final EventActionCallback? onTapEvent;
 
+  /// [onSetOrDownloadWallpaper] will be call when user set or download wallpaper
+  final Future<bool> Function(BuildContext)? onSetOrDownloadWallpaper;
+
   const EasyWallpaperApp({
     Key? key,
     required this.wallpaperUrls,
@@ -34,6 +37,7 @@ class EasyWallpaperApp extends StatelessWidget {
     this.leadingTitle,
     this.bgImage,
     this.onTapEvent,
+    this.onSetOrDownloadWallpaper,
     this.placementBuilder,
   }) : super(key: key);
 
@@ -47,6 +51,8 @@ class EasyWallpaperApp extends StatelessWidget {
       leadingTitle: leadingTitle,
       title: title,
       placementBuilder: placementBuilder,
+      onTapEvent: onTapEvent,
+      onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
       context: context,
       bgImage: bgImage,
       categories: wallpaperCategories ?? [],
@@ -94,6 +100,9 @@ class EasyWallpaperApp extends StatelessWidget {
 
     /// [onTapEvent] will be call on every event preformed by the user
     final EventActionCallback? onTapEvent,
+
+    /// [onSetOrDownloadWallpaper] will be call when user set or download wallpaper
+    final Future<bool> Function(BuildContext)? onSetOrDownloadWallpaper,
   }) =>
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -106,6 +115,7 @@ class EasyWallpaperApp extends StatelessWidget {
               wallpaperUrls: wallpaperUrls,
               placementBuilder: placementBuilder,
               onTapEvent: onTapEvent,
+              onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
             ),
           ),
         ),
