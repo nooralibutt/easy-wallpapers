@@ -166,11 +166,13 @@ class _MenuButtonsState extends State<MenuButtons> {
 
     if (context.mounted) {
       final controller = EasyWallpaperController.of(context);
+      bool canSetOrDownload = true;
       if (controller.onSetOrDownloadWallpaper != null) {
-        await controller.onSetOrDownloadWallpaper?.call(context);
+        canSetOrDownload =
+            await controller.onSetOrDownloadWallpaper!.call(context);
       }
 
-      if (context.mounted) {
+      if (context.mounted && canSetOrDownload) {
         final boundary = widget.fullScreenGlobalKey.currentContext!
             .findRenderObject()! as RenderRepaintBoundary;
         final ui.Image image = await boundary.toImage();
