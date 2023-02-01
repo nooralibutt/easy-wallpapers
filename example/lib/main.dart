@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<bool> _downloadWallpaper(BuildContext context) {
+    print('downloaded');
     return Future.value(true);
   }
 }
