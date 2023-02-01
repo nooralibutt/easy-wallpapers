@@ -21,7 +21,7 @@ class BlurBackgroundWidget extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        ImageWidget(
+        CachedNetworkAssetImage(
           imgPath: img,
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,

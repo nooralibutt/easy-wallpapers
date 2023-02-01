@@ -64,12 +64,12 @@ void printLog(String str) {
   }
 }
 
-class ImageWidget extends StatelessWidget {
+class CachedNetworkAssetImage extends StatelessWidget {
   final String imgPath;
   final BoxFit fit;
   final double? width;
   final double? height;
-  const ImageWidget(
+  const CachedNetworkAssetImage(
       {Key? key,
       required this.imgPath,
       required this.fit,

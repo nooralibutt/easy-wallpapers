@@ -1,3 +1,4 @@
+import 'package:circular_menu/circular_menu.dart';
 import 'package:easy_wallpapers/src/widgets/spacing_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -38,10 +39,8 @@ class LockScreenContainer extends StatelessWidget {
     return FutureBuilder(
       future: Future.delayed(const Duration(seconds: 1)),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        final button = IconButton(
-            icon: Icon(iconData),
-            onPressed: onTap,
-            color: Theme.of(context).colorScheme.primary);
+        final button =
+            CircularMenuItem(icon: iconData, onTap: onTap, color: Colors.black);
         return AnimatedOpacity(
           duration: const Duration(milliseconds: 300),
           opacity: snapshot.connectionState == ConnectionState.waiting ? 0 : 1,
