@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
 
   shared_preferences: ^2.0.17
-  package_info_plus: ^3.0.2
   device_info_plus: ^8.0.0
   wallpaper_manager_flutter: ^0.0.2
   # to save wallpapers to gallery
@@ -28,8 +27,6 @@ dependencies:
   circular_menu: ^2.0.1
   # to show lock screen in wallpapers
   intl: ^0.18.0
-  # to pick wallpapers from gallery upload files
-  image_picker: ^0.8.6+1
   cached_network_image: ^3.2.3
 
 dev_dependencies:
