@@ -11,7 +11,7 @@ class Prefs {
 
   static late SharedPreferences _prefs;
 
-  static const KEY_FAV_WALLS = "FAV_WALLS";
+  static const _keyFavWalls = "FAV_WALLS";
 
   Future<void> init() async => _prefs = await SharedPreferences.getInstance();
 
@@ -22,8 +22,8 @@ class Prefs {
     } else {
       favList.add(favWall);
     }
-    return _prefs.setStringList(KEY_FAV_WALLS, favList);
+    return _prefs.setStringList(_keyFavWalls, favList);
   }
 
-  List<String> getFavWallpapers() => _prefs.getStringList(KEY_FAV_WALLS) ?? [];
+  List<String> getFavWallpapers() => _prefs.getStringList(_keyFavWalls) ?? [];
 }
