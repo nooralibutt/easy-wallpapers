@@ -1,5 +1,8 @@
+import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
+import 'package:easy_wallpapers/src/models/enums.dart';
 import 'package:easy_wallpapers/src/utilities/prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FavouriteIcon extends StatefulWidget {
   final String wallpaperUrl;
@@ -37,10 +40,13 @@ class _FavouriteIconState extends State<FavouriteIcon> {
   }
 
   void onFavPressed() {
-    setState(() {
-      isFavourite = !isFavourite;
-    });
+    HapticFeedback.selectionClick();
+    setState(() => isFavourite = !isFavourite);
     Prefs.instance.toggleFavWallpaper(widget.wallpaperUrl);
+
+    EasyWallpaperController.of(context)
+        .onTapEvent
+        ?.call(context, WallpaperEventAction.addToFavorite);
   }
 
   void updateIsFavourite() {

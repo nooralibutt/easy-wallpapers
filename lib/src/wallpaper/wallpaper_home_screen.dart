@@ -1,4 +1,5 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
+import 'package:easy_wallpapers/src/models/enums.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/category_builder.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
@@ -52,6 +53,10 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
               SizedBox(height: MediaQuery.of(context).padding.top),
               Column(
                 children: [
+                  if (controller.placementBuilder != null)
+                    controller.placementBuilder!
+                        .call(context, WallpaperPlacement.wallpaperHomeTop),
+                  const VerticalSpacing(),
                   CategoryBuilder(controller.categories),
                   _fetchTrendingWallpapers(context, 'Trending'),
                 ],

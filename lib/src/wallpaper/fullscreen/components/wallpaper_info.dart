@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class WallpaperInfo extends StatefulWidget {
   final String wallpaperUrl;
@@ -29,7 +30,10 @@ class _WallpaperInfoState extends State<WallpaperInfo> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => infoDialog(context),
+      onPressed: () {
+        HapticFeedback.selectionClick();
+        infoDialog(context);
+      },
       icon: Icon(Icons.info,
           size: 30, color: Theme.of(context).secondaryHeaderColor),
     );

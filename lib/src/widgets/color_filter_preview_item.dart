@@ -20,17 +20,20 @@ class ColorFilterPreviewItem extends StatelessWidget {
             width: 80,
             height: 80,
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/wallpapers/home_bg.jpg'),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(20.0)), // Set rounded corner radius
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10, color: Colors.black, offset: Offset(1, 3))
-                ] // Make rounded corner of border
-                ),
+              image: DecorationImage(
+                image: AssetImage('assets/images/wallpapers/home_bg.jpg'),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.all(
+                  Radius.circular(20.0)), // Set rounded corner radius
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 8,
+                  color: Colors.black,
+                  offset: Offset(1, 2),
+                )
+              ],
+            ),
             alignment: Alignment.bottomCenter,
             child: Container(
               height: 14,
