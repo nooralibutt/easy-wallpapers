@@ -5,28 +5,28 @@ class ColorFilterData {
   const ColorFilterData(this.name, this.matrix);
 
   static const List<ColorFilterData> filters = [
-    ColorFilterData('Normal', _NORMAL_MATRIX),
-    ColorFilterData('Gray', _GRAY_MATRIX),
-    ColorFilterData('Technicolor', _Technicolor_MATRIX),
-    ColorFilterData('Sepium', _Sepium_MATRIX),
-    ColorFilterData('Vintage', _VINTAGE_MATRIX),
-    ColorFilterData('BlueSky', _BlueSky_MATRIX),
-    ColorFilterData('High Exposure', _GrayHighExposure_MATRIX),
-    ColorFilterData('Sepia', _SEPIA_MATRIX),
-    ColorFilterData('Greyscale', _GREYSCALE_MATRIX),
-    ColorFilterData('Sweet', _SWEET_MATRIX),
-    ColorFilterData('High Brightness', _GrayHighBrightness_MATRIX),
-    ColorFilterData('Low Brightness', _GrayLowBrightness_MATRIX),
-    ColorFilterData('Invert', _Invert_MATRIX),
-    ColorFilterData('Protanomaly', _Protanomaly_MATRIX),
-    ColorFilterData('Vintage', _Vintage_MATRIX),
-    ColorFilterData('Kodachrome', _Kodachrome_MATRIX),
-    ColorFilterData('BlueSky', _BlueSky_MATRIX),
-    ColorFilterData('BGR', _BGR_MATRIX),
+    ColorFilterData('Normal', _normalMatrix),
+    ColorFilterData('Gray', _grayMatrix),
+    ColorFilterData('Technicolor', _technicolorMatrix),
+    ColorFilterData('Sepium', _sepiumMatrix),
+    ColorFilterData('Vintage', _vintageMatrix),
+    ColorFilterData('BlueSky', _blueSkyMatrix),
+    ColorFilterData('High Exposure', _grayHighExposureMatrix),
+    ColorFilterData('Sepia', _sepiaMatrix),
+    ColorFilterData('Greyscale', _greyScaleMatrix),
+    ColorFilterData('Sweet', _sweetMatrix),
+    ColorFilterData('High Brightness', _grayHighBrightnessMatrix),
+    ColorFilterData('Low Brightness', _grayLowBrightnessMatrix),
+    ColorFilterData('Invert', _invertMatrix),
+    ColorFilterData('Protanomaly', _protanomalyMatrix),
+    ColorFilterData('Vintage', _vintageNewMatrix),
+    ColorFilterData('Kodachrome', _kodachromeMatrix),
+    ColorFilterData('BlueSky', _blueSkyMatrix),
+    ColorFilterData('BGR', _bgrMatrix),
   ];
 }
 
-const _NORMAL_MATRIX = [
+const _normalMatrix = [
   1.0, // R
   0.0, // G
   0.0, // B
@@ -52,7 +52,7 @@ const _NORMAL_MATRIX = [
   0.0, // Offset
 ];
 
-const _GRAY_MATRIX = [
+const _grayMatrix = [
   0.0,
   1.0,
   0.0,
@@ -74,7 +74,7 @@ const _GRAY_MATRIX = [
   1.0,
   0.0,
 ];
-const _SWEET_MATRIX = [
+const _sweetMatrix = [
   1.0,
   0.0,
   0.2,
@@ -96,7 +96,7 @@ const _SWEET_MATRIX = [
   1.0,
   0.0
 ];
-const _SEPIA_MATRIX = [
+const _sepiaMatrix = [
   0.39,
   0.769,
   0.189,
@@ -119,7 +119,7 @@ const _SEPIA_MATRIX = [
   0.0
 ];
 
-const _GREYSCALE_MATRIX = [
+const _greyScaleMatrix = [
   0.2126,
   0.7152,
   0.0722,
@@ -142,7 +142,7 @@ const _GREYSCALE_MATRIX = [
   0.0
 ];
 
-const _VINTAGE_MATRIX = [
+const _vintageMatrix = [
   0.9,
   0.5,
   0.1,
@@ -165,7 +165,7 @@ const _VINTAGE_MATRIX = [
   0.0
 ];
 
-const _GrayHighExposure_MATRIX = [
+const _grayHighExposureMatrix = [
   1.0,
   1.0,
   1.0,
@@ -188,7 +188,7 @@ const _GrayHighExposure_MATRIX = [
   0.0,
 ];
 
-const _GrayHighBrightness_MATRIX = [
+const _grayHighBrightnessMatrix = [
   0.0, // R
   1.0, // G
   0.0, // B
@@ -214,7 +214,7 @@ const _GrayHighBrightness_MATRIX = [
   0.0, // Offset
 ];
 
-const _GrayLowBrightness_MATRIX = [
+const _grayLowBrightnessMatrix = [
   0.0, // R
   1.0, // G
   0.0, // B
@@ -240,7 +240,7 @@ const _GrayLowBrightness_MATRIX = [
   0.0, // Offset
 ];
 
-const _Invert_MATRIX = [
+const _invertMatrix = [
   -1.0,
   0.0,
   0.0,
@@ -262,7 +262,7 @@ const _Invert_MATRIX = [
   1.0,
   0.0,
 ];
-const _Sepium_MATRIX = [
+const _sepiumMatrix = [
   1.3,
   -0.3,
   1.1,
@@ -285,7 +285,7 @@ const _Sepium_MATRIX = [
   0.0,
 ];
 
-const _Protanomaly_MATRIX = [
+const _protanomalyMatrix = [
   0.817,
   0.183,
   0.0,
@@ -307,7 +307,7 @@ const _Protanomaly_MATRIX = [
   1.0,
   0.0,
 ];
-const _Technicolor_MATRIX = [
+const _technicolorMatrix = [
   1.912, // R
   -0.854, // G
   -0.091, // B
@@ -332,7 +332,7 @@ const _Technicolor_MATRIX = [
   1.0, // AA
   0.0,
 ];
-const _BlueSky_MATRIX = [
+const _blueSkyMatrix = [
   1.912, // R
   -1.0, // G
   0.183, // B
@@ -358,7 +358,7 @@ const _BlueSky_MATRIX = [
   0.0, // Offset
 ];
 
-const _Kodachrome_MATRIX = [
+const _kodachromeMatrix = [
   1.128, // R
   -0.396, // G
   -0.039, // B
@@ -383,7 +383,7 @@ const _Kodachrome_MATRIX = [
   1.0, // AA
   0.0, // Offset
 ];
-const _Vintage_MATRIX = [
+const _vintageNewMatrix = [
   0.627, // R
   0.320, // G
   -0.039, // B
@@ -408,7 +408,7 @@ const _Vintage_MATRIX = [
   1.0, // AA
   0.0, // Offset
 ];
-const _BGR_MATRIX = [
+const _bgrMatrix = [
   0.0,
   0.0,
   1.0,

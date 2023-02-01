@@ -1,6 +1,6 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
-import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
+import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/utilities/prefs.dart';
 import 'package:easy_wallpapers/src/wallpaper/category/category_screen.dart';

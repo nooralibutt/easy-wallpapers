@@ -7,7 +7,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_wallpapers/easy_wallpapers.dart';
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
-import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
+import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
 import 'package:easy_wallpapers/src/utilities/constants.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/lock_screen_container.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/wallpaper_home_display.dart';

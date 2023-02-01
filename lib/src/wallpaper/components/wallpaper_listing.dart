@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_wallpapers/easy_wallpapers.dart';
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
-import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
+import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/full_screen.dart';
 import 'package:flutter/material.dart';
 
