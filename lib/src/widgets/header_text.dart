@@ -1,5 +1,6 @@
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeHeaderText extends StatelessWidget {
   final String? leadingText;
@@ -38,6 +39,7 @@ class HomeHeaderText extends StatelessWidget {
           iconSize: 30.0,
           icon: const Icon(Icons.favorite, color: Colors.red),
           onPressed: () {
+            HapticFeedback.selectionClick();
             Navigator.pushNamed(context, FavoriteWallpapersScreen.routeName);
           },
         )

@@ -44,9 +44,6 @@ post_install do |installer|
       config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
         '$(inherited)',
 
-        ## dart: PermissionGroup.mediaLibrary
-        'PERMISSION_MEDIA_LIBRARY=0',
-
         ## dart: PermissionGroup.photos
         'PERMISSION_PHOTOS=1',
 

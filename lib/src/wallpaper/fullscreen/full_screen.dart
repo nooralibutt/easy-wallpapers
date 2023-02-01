@@ -119,6 +119,8 @@ class _FullScreenViewState extends State<FullScreenView> {
           color: Theme.of(context).secondaryHeaderColor));
 
   void _onPageChanged(int page) {
+    HapticFeedback.mediumImpact();
+
     setState(() {
       selectedIndex = page;
       selected = ColorFilterData.filters.first;
@@ -130,6 +132,7 @@ class _FullScreenViewState extends State<FullScreenView> {
   }
 
   void onTapFilter(ColorFilterData filterData) {
+    HapticFeedback.mediumImpact();
     setState(() => selected = filterData);
   }
 }
