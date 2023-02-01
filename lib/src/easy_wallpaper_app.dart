@@ -24,12 +24,16 @@ class EasyWallpaperApp extends StatelessWidget {
   /// [placementBuilder] is used to build your custom widget at specific places
   final PlacementBuilder? placementBuilder;
 
+  /// [onTapEvent] will be call on every event preformed by the user
+  final EventActionCallback? onTapEvent;
+
   const EasyWallpaperApp({
     Key? key,
     required this.wallpaperUrls,
     required this.title,
     this.leadingTitle,
     this.bgImage,
+    this.onTapEvent,
     this.placementBuilder,
   }) : super(key: key);
 
@@ -87,6 +91,9 @@ class EasyWallpaperApp extends StatelessWidget {
 
     /// [placementBuilder] is used to build your custom widget at specific places
     final PlacementBuilder? placementBuilder,
+
+    /// [onTapEvent] will be call on every event preformed by the user
+    final EventActionCallback? onTapEvent,
   }) =>
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -98,6 +105,7 @@ class EasyWallpaperApp extends StatelessWidget {
               bgImage: bgImage,
               wallpaperUrls: wallpaperUrls,
               placementBuilder: placementBuilder,
+              onTapEvent: onTapEvent,
             ),
           ),
         ),

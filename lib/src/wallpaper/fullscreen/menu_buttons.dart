@@ -5,6 +5,8 @@ import 'dart:ui' as ui;
 import 'package:circular_menu/circular_menu.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_wallpapers/easy_wallpapers.dart';
+import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
 import 'package:easy_wallpapers/src/utilities/constants.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/lock_screen_container.dart';
@@ -223,6 +225,12 @@ class _MenuButtonsState extends State<MenuButtons> {
 
       await showCustomAlertDialog(
           _key.currentContext!, 'Info', 'Wallpaper is set to $locationStr');
+
+      if (context.mounted) {
+        EasyWallpaperController.of(context)
+            .onTapEvent
+            ?.call(context, WallpaperEventAction.setWallpaper);
+      }
     } catch (e) {
       showCustomAlertDialog(_key.currentContext!, 'Failed',
           'Failed to set wallpaper. Please try later: ${e.toString()}');

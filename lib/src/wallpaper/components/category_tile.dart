@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_wallpapers/easy_wallpapers.dart';
+import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/wallpaper/category/category_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,9 @@ class CategoryTile extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
+        EasyWallpaperController.of(context)
+            .onTapEvent
+            ?.call(context, WallpaperEventAction.openCategory);
         Navigator.pushNamed(context, CategoryScreen.routeName,
             arguments: title);
       },

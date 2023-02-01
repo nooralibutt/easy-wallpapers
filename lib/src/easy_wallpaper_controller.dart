@@ -3,6 +3,7 @@ import 'package:easy_wallpapers/src/models/wallpaper_category.dart';
 import 'package:flutter/material.dart';
 
 typedef PlacementBuilder = Widget Function(BuildContext, WallpaperPlacement);
+typedef EventActionCallback = void Function(BuildContext, WallpaperEventAction);
 
 class EasyWallpaperController extends InheritedWidget {
   const EasyWallpaperController({
@@ -13,6 +14,7 @@ class EasyWallpaperController extends InheritedWidget {
     required this.wallpaperUrls,
     required super.child,
     this.placementBuilder,
+    this.onTapEvent,
     required this.categories,
     required this.context,
   });
@@ -31,6 +33,9 @@ class EasyWallpaperController extends InheritedWidget {
 
   /// [placementBuilder] is used to build your custom widget at specific places
   final PlacementBuilder? placementBuilder;
+
+  /// [onTapEvent] will be call on every event preformed by the user
+  final EventActionCallback? onTapEvent;
 
   final List<WallpaperCategory> categories;
   final BuildContext context;

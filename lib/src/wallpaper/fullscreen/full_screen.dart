@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_wallpapers/easy_wallpapers.dart';
+import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_icon.dart';
 import 'package:easy_wallpapers/src/models/FullScreenArguments.dart';
 import 'package:easy_wallpapers/src/models/color_filter_data.dart';
@@ -121,6 +123,10 @@ class _FullScreenViewState extends State<FullScreenView> {
       selectedIndex = page;
       selected = ColorFilterData.filters.first;
     });
+
+    EasyWallpaperController.of(context)
+        .onTapEvent
+        ?.call(context, WallpaperEventAction.swipeWallpaper);
   }
 
   void onTapFilter(ColorFilterData filterData) {
