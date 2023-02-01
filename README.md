@@ -1,10 +1,10 @@
 # Easy Wallpapers
 
-[![pub package](https://img.shields.io/pub/v/easy_wallpapers.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/easy_wallpapers)
-[![Last Commits](https://img.shields.io/github/last-commit/nooralibutt/easy_wallpapers?logo=git&logoColor=white)](https://github.com/nooralibutt/easy_wallpapers/commits/master)
-[![Pull Requests](https://img.shields.io/github/issues-pr/nooralibutt/easy_wallpapers?logo=github&logoColor=white)](https://github.com/nooralibutt/easy_wallpapers/pulls)
-[![Code size](https://img.shields.io/github/languages/code-size/nooralibutt/easy_wallpapers?logo=github&logoColor=white)](https://github.com/nooralibutt/easy_wallpapers)
-[![License](https://img.shields.io/github/license/nooralibutt/easy_wallpapers?logo=open-source-initiative&logoColor=green)](https://github.com/nooralibutt/easy_wallpapers/blob/master/LICENSE)
+[![pub package](https://img.shields.io/pub/v/easy-wallpapers.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/easy-wallpapers)
+[![Last Commits](https://img.shields.io/github/last-commit/nooralibutt/easy-wallpapers?logo=git&logoColor=white)](https://github.com/nooralibutt/easy-wallpapers/commits/master)
+[![Pull Requests](https://img.shields.io/github/issues-pr/nooralibutt/easy-wallpapers?logo=github&logoColor=white)](https://github.com/nooralibutt/easy-wallpapers/pulls)
+[![Code size](https://img.shields.io/github/languages/code-size/nooralibutt/easy-wallpapers?logo=github&logoColor=white)](https://github.com/nooralibutt/easy-wallpapers)
+[![License](https://img.shields.io/github/license/nooralibutt/easy-wallpapers?logo=open-source-initiative&logoColor=green)](https://github.com/nooralibutt/easy-wallpapers/blob/master/LICENSE)
 
 **Show some 💙, 👍 the package & ⭐️ the repo to support the project**
 
@@ -14,7 +14,7 @@
 - Support for download wallpapers
 - Support to add filters on the wallpapers
 
-![](https://github.com/nooralibutt/easy_wallpapers/blob/master/demo-gif.gif?raw=true)
+![](https://github.com/nooralibutt/easy-wallpapers/blob/master/demo_gif.gif?raw=true)
 
 ## How to use
 There are two ways to use Easy Wallpaper.
@@ -23,15 +23,15 @@ There are two ways to use Easy Wallpaper.
 
 ```dart
 EasyWallpaperApp.launchApp(
-  context,
-  wallpaperUrls: data,
-  leadingTitle: '4k',
-  title: 'Wallpapers',
-  bgImage:
-  'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
-  placementBuilder: _addPlacements,
-  onTapEvent: _onTapEvent,
-  onSetOrDownloadWallpaper: _downloadWallpaper,
+context,
+wallpaperUrls: data,
+leadingTitle: '4k',
+title: 'Wallpapers',
+bgImage:
+'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+placementBuilder: _addPlacements,
+onTapEvent: _onTapEvent,
+onSetOrDownloadWallpaper: _downloadWallpaper,
 ),
 ```
 
@@ -39,15 +39,15 @@ EasyWallpaperApp.launchApp(
 
 ```dart
 EasyWallpaperApp(
-  context,
-  wallpaperUrls: data,
-  leadingTitle: '4k',
-  title: 'Wallpapers',
-  bgImage:
-  'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
-  placementBuilder: _addPlacements,
-  onTapEvent: _onTapEvent,
-  onSetOrDownloadWallpaper: _downloadWallpaper,
+context,
+wallpaperUrls: data,
+leadingTitle: '4k',
+title: 'Wallpapers',
+bgImage:
+'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+placementBuilder: _addPlacements,
+onTapEvent: _onTapEvent,
+onSetOrDownloadWallpaper: _downloadWallpaper,
 ),
 ```
 
@@ -90,7 +90,7 @@ final data = {
 
 ```
 
-See [Example](https://pub.dev/packages/easy_wallpapers/example) for better understanding.
+See [Example](https://pub.dev/packages/easy-wallpapers/example) for better understanding.
 
 ## Authors
 ##### Noor Ali Butt
