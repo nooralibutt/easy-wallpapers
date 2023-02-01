@@ -28,6 +28,7 @@ dependencies:
   # to show lock screen in wallpapers
   intl: ^0.18.0
   cached_network_image: ^3.2.3
+  path_provider: ^2.0.12
 
 dev_dependencies:
   flutter_test:
