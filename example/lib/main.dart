@@ -38,12 +38,19 @@ class _MyHomePageState extends State<MyHomePage> {
           wallpaperUrls: data,
           title: 'Wallpapers',
           leadingTitle: 'Nice',
+          bgImage:
+              'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          EasyWallpaperApp.launchApp(context,
-              wallpaperUrls: data, title: 'Wallpapers');
+          EasyWallpaperApp.launchApp(
+            context,
+            wallpaperUrls: data,
+            title: 'Wallpapers',
+            bgImage:
+                'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+          );
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

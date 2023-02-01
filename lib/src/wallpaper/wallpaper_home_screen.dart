@@ -2,6 +2,7 @@ import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/category_builder.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
+import 'package:easy_wallpapers/src/widgets/background_widget.dart';
 import 'package:easy_wallpapers/src/widgets/header_text.dart';
 import 'package:easy_wallpapers/src/widgets/spacing_widgets.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
     final mainContext = controller.context;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).secondaryHeaderColor),
         leading: (ModalRoute.of(mainContext)?.canPop ?? false)
@@ -40,38 +42,25 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: _buildBody(context),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return Column(
-      children: [
-        const VerticalSpacing(of: 10),
-        Expanded(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const VerticalSpacing(),
-                _fetchCategoryData(context),
-                const VerticalSpacing(),
-              ],
-            ),
+      body: BlurBackgroundWidget(
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const VerticalSpacing(of: 60),
+              SizedBox(height: MediaQuery.of(context).padding.top),
+              Column(
+                children: [
+                  CategoryBuilder(controller.categories),
+                  _fetchTrendingWallpapers(context, 'Trending'),
+                ],
+              ),
+              const VerticalSpacing(),
+            ],
           ),
         ),
-      ],
-    );
-  }
-
-  Widget _fetchCategoryData(BuildContext context) {
-    final categories = EasyWallpaperController.of(context).categories;
-    return Column(
-      children: [
-        CategoryBuilder(categories),
-        _fetchTrendingWallpapers(context, 'Trending'),
-      ],
+      ),
     );
   }
 
