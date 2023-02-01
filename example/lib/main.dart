@@ -107,25 +107,69 @@ class _MyHomePageState extends State<MyHomePage> {
   StreamSubscription? _streamSubscription;
 
   Future<bool> _downloadWallpaper(BuildContext context) {
-    bool isAdShowed = false;
+    final completer = Completer<bool>();
 
-    if (EasyAds.instance.showAd(AdUnitType.rewarded)) {
-      _streamSubscription?.cancel();
-      _streamSubscription = EasyAds.instance.onEvent.listen((event) {
-        if (event.adUnitType == AdUnitType.rewarded &&
-            event.type == AdEventType.adDismissed) {
+    showRewardedAdAlertDialog(
+      context,
+      onWatchAd: () {
+        if (EasyAds.instance
+            .showAd(AdUnitType.rewarded, adNetwork: AdNetwork.unity)) {
           _streamSubscription?.cancel();
+          _streamSubscription = EasyAds.instance.onEvent.listen((event) {
+            if (event.adUnitType == AdUnitType.rewarded) {
+              if (event.type == AdEventType.adDismissed ||
+                  event.type == AdEventType.earnedReward) {
+                _streamSubscription?.cancel();
+                completer.complete(true);
+              }
+            }
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('No ad available right now, please try later')));
+          completer.complete(false);
         }
-      });
-
-      isAdShowed = true;
-    }
-    return Future.value(isAdShowed);
+      },
+      onClickNo: () => completer.complete(false),
+    );
+    return completer.future;
   }
 
   void printLog(String str) {
     if (kDebugMode) {
       print(str);
     }
+  }
+
+  Future<bool?> showRewardedAdAlertDialog(BuildContext context,
+      {required VoidCallback onWatchAd, required VoidCallback onClickNo}) {
+    return showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        final no = TextButton(
+          child: const Text("No"),
+          onPressed: () {
+            Navigator.of(context).pop(false);
+            onClickNo();
+          },
+        );
+        final yes = TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+            onWatchAd.call();
+          },
+          child: const Text("Watch Ad"),
+        );
+        // set up the AlertDialog
+        AlertDialog alert = AlertDialog(
+          title: const Text('Download!'),
+          content:
+              const Text('Would you like to watch rewarded ad to download?'),
+          actions: [no, yes],
+        );
+        return alert;
+      },
+    );
   }
 }

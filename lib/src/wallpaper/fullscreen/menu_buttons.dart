@@ -188,7 +188,7 @@ class _MenuButtonsState extends State<MenuButtons> {
         await ImageGallerySaver.saveImage(list);
     final bool isSuccess = result['isSuccess'] ?? false;
     if (isSuccess) {
-      await showCustomAlertDialog(
+      showCustomAlertDialog(
           _key.currentContext!, 'Downloaded', 'Wallpaper saved to gallery');
     } else {
       final String errorMessage = result['errorMessage'];
