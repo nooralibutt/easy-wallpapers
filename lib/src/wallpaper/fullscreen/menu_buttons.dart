@@ -257,10 +257,11 @@ class _MenuButtonsState extends State<MenuButtons> {
           SimpleDialogOption(
             onPressed: () async {
               final controller = EasyWallpaperController.of(context);
+              bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
-              if (context.mounted) {
+              if (context.mounted && canSetOrDownload) {
                 Navigator.pop(context, WallpaperManagerFlutter.HOME_SCREEN);
               }
             },
@@ -275,10 +276,11 @@ class _MenuButtonsState extends State<MenuButtons> {
           SimpleDialogOption(
             onPressed: () async {
               final controller = EasyWallpaperController.of(context);
+              bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
-              if (context.mounted) {
+              if (context.mounted && canSetOrDownload) {
                 Navigator.pop(context, WallpaperManagerFlutter.LOCK_SCREEN);
               }
             },
@@ -293,10 +295,11 @@ class _MenuButtonsState extends State<MenuButtons> {
           SimpleDialogOption(
             onPressed: () async {
               final controller = EasyWallpaperController.of(context);
+              bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
-              if (context.mounted) {
+              if (context.mounted && canSetOrDownload) {
                 Navigator.pop(context, WallpaperManagerFlutter.BOTH_SCREENS);
               }
             },

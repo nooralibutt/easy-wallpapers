@@ -70,7 +70,7 @@ class _FullScreenViewState extends State<FullScreenView> {
             ),
           ),
           Positioned.fill(
-            bottom: 100,
+            bottom: 120,
             left: 0,
             right: 0,
             top: MediaQuery.of(context).padding.top / 2 + 70,
@@ -92,7 +92,7 @@ class _FullScreenViewState extends State<FullScreenView> {
           ),
           Positioned(
             height: 100,
-            bottom: 0,
+            bottom: 20,
             left: 0,
             right: 0,
             child: ListView.builder(
