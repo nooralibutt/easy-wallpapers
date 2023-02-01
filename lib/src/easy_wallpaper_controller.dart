@@ -1,5 +1,8 @@
+import 'package:easy_wallpapers/src/models/enums.dart';
 import 'package:easy_wallpapers/src/models/wallpaper_category.dart';
 import 'package:flutter/material.dart';
+
+typedef PlacementBuilder = Widget Function(BuildContext, WallpaperPlacement);
 
 class EasyWallpaperController extends InheritedWidget {
   const EasyWallpaperController({
@@ -9,6 +12,7 @@ class EasyWallpaperController extends InheritedWidget {
     this.bgImage,
     required this.wallpaperUrls,
     required super.child,
+    this.placementBuilder,
     required this.categories,
     required this.context,
   });
@@ -24,6 +28,9 @@ class EasyWallpaperController extends InheritedWidget {
 
   /// This will be list of all wallpaper URLs that a user wants to add inn  the package
   final Map<String, dynamic> wallpaperUrls;
+
+  /// [placementBuilder] is used to build your custom widget at specific places
+  final PlacementBuilder? placementBuilder;
 
   final List<WallpaperCategory> categories;
   final BuildContext context;

@@ -1,0 +1,4 @@
+enum WallpaperPlacement {
+  wallpaperHomeTop,
+  wallpaperCategoryTop,
+}

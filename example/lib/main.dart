@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
           leadingTitle: 'Nice',
           bgImage:
               'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+          placementBuilder: _addPlacements,
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -56,5 +57,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Widget _addPlacements(BuildContext context, WallpaperPlacement placement) {
+    switch (placement) {
+      case WallpaperPlacement.wallpaperHomeTop:
+        return Container(height: 50, width: double.infinity, color: Colors.red);
+      case WallpaperPlacement.wallpaperCategoryTop:
+        return Container(
+            height: 50, width: double.infinity, color: Colors.orange);
+      default:
+        return const SizedBox();
+    }
   }
 }

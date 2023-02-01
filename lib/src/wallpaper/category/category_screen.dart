@@ -1,4 +1,5 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
+import 'package:easy_wallpapers/src/models/enums.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
 import 'package:easy_wallpapers/src/widgets/header_text.dart';
@@ -35,26 +36,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: _buildBody(context, widget.category),
-    );
-  }
-
-  Widget _buildBody(BuildContext context, String category) {
-    return Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              children: [
-                const VerticalSpacing(),
-                _fetchTrendingWallpapers(context, category),
-                const VerticalSpacing(),
-              ],
-            ),
-          ),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Column(
+          children: [
+            if (controller.placementBuilder != null)
+              controller.placementBuilder!
+                  .call(context, WallpaperPlacement.wallpaperCategoryTop),
+            const VerticalSpacing(),
+            _fetchTrendingWallpapers(context, widget.category),
+            const VerticalSpacing(),
+          ],
         ),
-      ],
+      ),
     );
   }
 

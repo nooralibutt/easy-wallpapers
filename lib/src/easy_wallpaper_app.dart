@@ -21,12 +21,16 @@ class EasyWallpaperApp extends StatelessWidget {
   /// This will be list of all wallpaper URLs that a user wants to add inn  the package
   final Map<String, dynamic> wallpaperUrls;
 
+  /// [placementBuilder] is used to build your custom widget at specific places
+  final PlacementBuilder? placementBuilder;
+
   const EasyWallpaperApp({
     Key? key,
     required this.wallpaperUrls,
     required this.title,
     this.leadingTitle,
     this.bgImage,
+    this.placementBuilder,
   }) : super(key: key);
 
   @override
@@ -38,6 +42,7 @@ class EasyWallpaperApp extends StatelessWidget {
       wallpaperUrls: wallpaperUrls,
       leadingTitle: leadingTitle,
       title: title,
+      placementBuilder: placementBuilder,
       context: context,
       bgImage: bgImage,
       categories: wallpaperCategories ?? [],
@@ -79,6 +84,9 @@ class EasyWallpaperApp extends StatelessWidget {
 
     /// This will be list of all wallpaper URLs that a user wants to add inn  the package
     required final Map<String, dynamic> wallpaperUrls,
+
+    /// [placementBuilder] is used to build your custom widget at specific places
+    final PlacementBuilder? placementBuilder,
   }) =>
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -89,6 +97,7 @@ class EasyWallpaperApp extends StatelessWidget {
               title: title,
               bgImage: bgImage,
               wallpaperUrls: wallpaperUrls,
+              placementBuilder: placementBuilder,
             ),
           ),
         ),
