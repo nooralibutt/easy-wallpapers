@@ -27,11 +27,16 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final controller = EasyWallpaperController.of(context);
+    final mainContext = controller.context;
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Theme.of(context).secondaryHeaderColor),
+        leading: (ModalRoute.of(mainContext)?.canPop ?? false)
+            ? CloseButton(onPressed: Navigator.of(mainContext).pop)
+            : null,
         title: HomeHeaderText(
-            leadingText: controller.leadingTitle, name: controller.title!),
+            leadingText: controller.leadingTitle, name: controller.title),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

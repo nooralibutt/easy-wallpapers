@@ -31,7 +31,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).secondaryHeaderColor),
         title: HomeHeaderText(
-            leadingText: controller.leadingTitle, name: controller.title!),
+            leadingText: controller.leadingTitle, name: controller.title),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

@@ -5,7 +5,7 @@ class EasyWallpaperController extends InheritedWidget {
   const EasyWallpaperController({
     super.key,
     this.leadingTitle,
-    this.title,
+    required this.title,
     this.bgImage,
     required this.topSafeArea,
     required this.wallpaperUrls,
@@ -18,7 +18,7 @@ class EasyWallpaperController extends InheritedWidget {
   final String? leadingTitle;
 
   /// This is the main title text
-  final String? title;
+  final String title;
 
   /// This will be added as a background image with blur effect
   final String? bgImage;

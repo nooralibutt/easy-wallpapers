@@ -1,4 +1,3 @@
-import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +12,9 @@ class HomeHeaderText extends StatelessWidget {
         .textTheme
         .headlineSmall!
         .copyWith(fontWeight: FontWeight.w700);
-    final mainContext = EasyWallpaperController.of(context).context;
 
     return Row(
       children: [
-        if (ModalRoute.of(mainContext)?.canPop ?? false)
-          CloseButton(onPressed: Navigator.of(mainContext).pop),
         Expanded(
           child: FittedBox(
             fit: BoxFit.scaleDown,

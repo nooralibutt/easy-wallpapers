@@ -13,7 +13,7 @@ class EasyWallpaperApp extends StatelessWidget {
   final String? leadingTitle;
 
   /// This is the main title text
-  final String? title;
+  final String title;
 
   /// This will be added as a background image with blur effect
   final String? bgImage;
@@ -77,7 +77,7 @@ class EasyWallpaperApp extends StatelessWidget {
     final String? leadingTitle,
 
     /// This is the main title text
-    final String? title,
+    required final String title,
 
     /// This will be added as a background image with blur effect
     final String? bgImage,
