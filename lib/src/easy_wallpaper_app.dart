@@ -18,9 +18,6 @@ class EasyWallpaperApp extends StatelessWidget {
   /// This will be added as a background image with blur effect
   final String? bgImage;
 
-  /// This is for safe area space
-  final bool topSafeArea;
-
   /// This will be list of all wallpaper URLs that a user wants to add inn  the package
   final Map<String, dynamic> wallpaperUrls;
 
@@ -30,7 +27,6 @@ class EasyWallpaperApp extends StatelessWidget {
     required this.title,
     this.leadingTitle,
     this.bgImage,
-    this.topSafeArea = true,
   }) : super(key: key);
 
   @override
@@ -44,7 +40,6 @@ class EasyWallpaperApp extends StatelessWidget {
       title: title,
       context: context,
       bgImage: bgImage,
-      topSafeArea: topSafeArea,
       categories: wallpaperCategories ?? [],
 
       /// Package has its own navigation
@@ -82,9 +77,6 @@ class EasyWallpaperApp extends StatelessWidget {
     /// This will be added as a background image with blur effect
     final String? bgImage,
 
-    /// This is for safe area space
-    final bool topSafeArea = true,
-
     /// This will be list of all wallpaper URLs that a user wants to add inn  the package
     required final Map<String, dynamic> wallpaperUrls,
   }) =>
@@ -96,7 +88,6 @@ class EasyWallpaperApp extends StatelessWidget {
               leadingTitle: leadingTitle,
               title: title,
               bgImage: bgImage,
-              topSafeArea: topSafeArea,
               wallpaperUrls: wallpaperUrls,
             ),
           ),

@@ -7,7 +7,6 @@ class EasyWallpaperController extends InheritedWidget {
     this.leadingTitle,
     required this.title,
     this.bgImage,
-    required this.topSafeArea,
     required this.wallpaperUrls,
     required super.child,
     required this.categories,
@@ -22,9 +21,6 @@ class EasyWallpaperController extends InheritedWidget {
 
   /// This will be added as a background image with blur effect
   final String? bgImage;
-
-  /// This is for safe area space
-  final bool topSafeArea;
 
   /// This will be list of all wallpaper URLs that a user wants to add inn  the package
   final Map<String, dynamic> wallpaperUrls;
