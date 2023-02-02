@@ -1,6 +1,6 @@
 # Easy Wallpapers
 
-[![pub package](https://img.shields.io/pub/v/easy-wallpapers.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/easy-wallpapers)
+[![pub package](https://img.shields.io/pub/v/easy_wallpapers.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/easy_wallpapers)
 [![Last Commits](https://img.shields.io/github/last-commit/nooralibutt/easy-wallpapers?logo=git&logoColor=white)](https://github.com/nooralibutt/easy-wallpapers/commits/master)
 [![Pull Requests](https://img.shields.io/github/issues-pr/nooralibutt/easy-wallpapers?logo=github&logoColor=white)](https://github.com/nooralibutt/easy-wallpapers/pulls)
 [![Code size](https://img.shields.io/github/languages/code-size/nooralibutt/easy-wallpapers?logo=github&logoColor=white)](https://github.com/nooralibutt/easy-wallpapers)
@@ -18,6 +18,7 @@
 
 ## How to use
 There are two ways to use Easy Wallpaper.
+
 
 ### 1: Stand-Alone App mode
 
@@ -39,16 +40,47 @@ onSetOrDownloadWallpaper: _downloadWallpaper,
 
 ```dart
 EasyWallpaperApp(
-context,
-wallpaperUrls: data,
-leadingTitle: '4k',
-title: 'Wallpapers',
-bgImage:
-'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
-placementBuilder: _addPlacements,
-onTapEvent: _onTapEvent,
-onSetOrDownloadWallpaper: _downloadWallpaper,
+  context,
+  wallpaperUrls: data,
+  leadingTitle: '4k',
+  title: 'Wallpapers',
+  bgImage:
+  'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+  placementBuilder: _addPlacements,
+  onTapEvent: _onTapEvent,
+  onSetOrDownloadWallpaper: _downloadWallpaper,
 ),
+```
+## Permissions
+### For iOS:
+- For iOS, we have to add the gallery permissons in the `ios/podfile`
+
+```
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+
+        ## dart: PermissionGroup.photos
+        'PERMISSION_PHOTOS=1',
+
+      ]
+    end
+  end
+end
+```
+### For Android:
+- Add Following permission in the `manifest.xml` file in android project
+
+```
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 ```
 
 ## Additional Info
