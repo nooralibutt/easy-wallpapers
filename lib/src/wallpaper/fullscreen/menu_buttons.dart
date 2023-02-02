@@ -198,7 +198,8 @@ class _MenuButtonsState extends State<MenuButtons> {
   }
 
   void _setWallpaper() async {
-    int? location = await _showSetWallpaperDialog();
+    final controller = EasyWallpaperController.of(context);
+    int? location = await _showSetWallpaperDialog(controller);
     if (location == null) return;
 
     final ProgressDialog pd = ProgressDialog(context: _key.currentContext);
@@ -237,9 +238,7 @@ class _MenuButtonsState extends State<MenuButtons> {
           _key.currentContext!, 'Info', 'Wallpaper is set to $locationStr');
 
       if (context.mounted) {
-        EasyWallpaperController.of(context)
-            .onTapEvent
-            ?.call(context, WallpaperEventAction.setWallpaper);
+        controller.onTapEvent?.call(context, WallpaperEventAction.setWallpaper);
       }
     } catch (e) {
       showCustomAlertDialog(_key.currentContext!, 'Failed',
@@ -247,7 +246,7 @@ class _MenuButtonsState extends State<MenuButtons> {
     }
   }
 
-  Future<int?> _showSetWallpaperDialog() {
+  Future<int?> _showSetWallpaperDialog(EasyWallpaperController controller) {
     return showDialog<int>(
       context: context,
       barrierDismissible: true,
@@ -256,7 +255,6 @@ class _MenuButtonsState extends State<MenuButtons> {
         children: [
           SimpleDialogOption(
             onPressed: () async {
-              final controller = EasyWallpaperController.of(context);
               bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
@@ -275,7 +273,6 @@ class _MenuButtonsState extends State<MenuButtons> {
           ),
           SimpleDialogOption(
             onPressed: () async {
-              final controller = EasyWallpaperController.of(context);
               bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
@@ -294,7 +291,6 @@ class _MenuButtonsState extends State<MenuButtons> {
           ),
           SimpleDialogOption(
             onPressed: () async {
-              final controller = EasyWallpaperController.of(context);
               bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
