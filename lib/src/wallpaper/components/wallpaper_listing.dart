@@ -100,6 +100,7 @@ class WallpaperGridTile extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: CachedNetworkImage(
+              filterQuality: FilterQuality.high,
               imageUrl: imgURL,
               placeholder: (context, url) => const WallpaperPlaceholder(),
               fit: BoxFit.cover),

@@ -77,7 +77,6 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
       return const Text(
         'There is something wrong!\nPlease check your internet connection',
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white),
       );
     }
     return WallpaperListing(wallpapers, _scrollController);

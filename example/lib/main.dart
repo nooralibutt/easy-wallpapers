@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.blue, secondaryHeaderColor: Colors.orange),
+      theme: ThemeData.light(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -66,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
           placementBuilder: _addPlacements,
           onTapEvent: _onTapEvent,
-          onSetOrDownloadWallpaper: _downloadWallpaper,
+          // onSetOrDownloadWallpaper: _downloadWallpaper,
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -79,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
             placementBuilder: _addPlacements,
             onTapEvent: _onTapEvent,
-            onSetOrDownloadWallpaper: _downloadWallpaper,
+            // onSetOrDownloadWallpaper: _downloadWallpaper,
           );
         },
         tooltip: 'Increment',
@@ -106,34 +105,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
   StreamSubscription? _streamSubscription;
 
-  Future<bool> _downloadWallpaper(BuildContext context) {
-    final completer = Completer<bool>();
-
-    showRewardedAdAlertDialog(
-      context,
-      onWatchAd: () {
-        if (EasyAds.instance
-            .showAd(AdUnitType.rewarded, adNetwork: AdNetwork.unity)) {
-          _streamSubscription?.cancel();
-          _streamSubscription = EasyAds.instance.onEvent.listen((event) {
-            if (event.adUnitType == AdUnitType.rewarded) {
-              if (event.type == AdEventType.adDismissed ||
-                  event.type == AdEventType.earnedReward) {
-                _streamSubscription?.cancel();
-                completer.complete(true);
-              }
-            }
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('No ad available right now, please try later')));
-          completer.complete(false);
-        }
-      },
-      onClickNo: () => completer.complete(false),
-    );
-    return completer.future;
-  }
+  // Future<bool> _downloadWallpaper(BuildContext context) {
+  //   final completer = Completer<bool>();
+  //
+  //   showRewardedAdAlertDialog(
+  //     context,
+  //     onWatchAd: () {
+  //       if (EasyAds.instance
+  //           .showAd(AdUnitType.rewarded, adNetwork: AdNetwork.unity)) {
+  //         _streamSubscription?.cancel();
+  //         _streamSubscription = EasyAds.instance.onEvent.listen((event) {
+  //           if (event.adUnitType == AdUnitType.rewarded) {
+  //             if (event.type == AdEventType.adDismissed ||
+  //                 event.type == AdEventType.earnedReward) {
+  //               _streamSubscription?.cancel();
+  //               completer.complete(true);
+  //             }
+  //           }
+  //         });
+  //       } else {
+  //         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+  //             content: Text('No ad available right now, please try later')));
+  //         completer.complete(false);
+  //       }
+  //     },
+  //     onClickNo: () => completer.complete(false),
+  //   );
+  //   return completer.future;
+  // }
 
   void printLog(String str) {
     if (kDebugMode) {

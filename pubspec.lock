@@ -97,14 +97,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  dio:
-    dependency: "direct main"
-    description:
-      name: dio
-      sha256: "7d328c4d898a61efc3cd93655a0955858e29a0aa647f0f9e02d59b3bb275e2e8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.6"
   fake_async:
     dependency: transitive
     description:
@@ -143,7 +135,7 @@ packages:
     source: hosted
     version: "0.7.0"
   flutter_cache_manager:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_cache_manager
       sha256: "32cd900555219333326a2d0653aaaf8671264c29befa65bbd9856d204a4c9fb3"
@@ -257,7 +249,7 @@ packages:
     source: hosted
     version: "1.8.2"
   path_provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path_provider
       sha256: dcea5feb97d8abf90cab9e9030b497fb7c3cbf26b7a1fe9e3ef7dcb0a1ddec95
@@ -445,14 +437,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sn_progress_dialog:
-    dependency: "direct main"
-    description:
-      name: sn_progress_dialog
-      sha256: "89bf56e79aa73fc255a7efc62897cbc7c408aa63257ef2f94b745fe3a7eb3a08"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
   source_span:
     dependency: transitive
     description:

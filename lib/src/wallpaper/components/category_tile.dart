@@ -56,7 +56,7 @@ class CategoryTile extends StatelessWidget {
                 child: Text(
                   title ?? 'N/A',
                   style: theme.textTheme.headlineSmall!
-                      .copyWith(color: theme.secondaryHeaderColor),
+                      .copyWith(color: Colors.white),
                 ),
               ),
             )
