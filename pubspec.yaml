@@ -1,6 +1,6 @@
 name: easy_wallpapers
 description: This package is used for integrate wallpapers in the app and provide customizations in the wallpapers.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/nooralibutt/easy-wallpapers
 repository: https://github.com/nooralibutt/easy-wallpapers
 
@@ -17,18 +17,14 @@ dependencies:
   wallpaper_manager_flutter: ^0.0.2
   # to save wallpapers to gallery
   image_gallery_saver: ^1.7.1
-  # to download wallpapers
-  dio: ^4.0.6
   # to get storage permission from user for saving wallpapers
   permission_handler: ^10.2.0
-  # to show progress of downloading wallpapers
-  sn_progress_dialog: ^1.1.2
   # to show menu in full screen of wallpapers
   circular_menu: ^2.0.1
   # to show lock screen in wallpapers
   intl: ^0.18.0
   cached_network_image: ^3.2.3
-  path_provider: ^2.0.12
+  flutter_cache_manager: ^3.3.0
 
 dev_dependencies:
   flutter_test:

@@ -52,6 +52,7 @@ class _FullScreenViewState extends State<FullScreenView> {
                 controller: PageController(initialPage: selectedIndex),
                 itemBuilder: (context, position) {
                   return CachedNetworkImage(
+                      filterQuality: FilterQuality.high,
                       imageUrl: list[position],
                       imageBuilder: (context, provider) {
                         return ColorFiltered(

@@ -58,7 +58,8 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
                         .call(context, WallpaperPlacement.wallpaperHomeTop),
                   const VerticalSpacing(),
                   CategoryBuilder(controller.categories),
-                  _fetchTrendingWallpapers(context, 'Trending'),
+                  _fetchTrendingWallpapers(
+                      context, controller.categories.first.title),
                 ],
               ),
               const VerticalSpacing(),
@@ -77,7 +78,6 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
       return const Text(
         'There is something wrong!\nPlease check your internet connection',
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white),
       );
     }
     return WallpaperListing(wallpapers, _scrollController);

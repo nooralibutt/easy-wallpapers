@@ -1,10 +1,8 @@
 import 'dart:io';
-import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:circular_menu/circular_menu.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:dio/dio.dart';
 import 'package:easy_wallpapers/easy_wallpapers.dart';
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
@@ -15,17 +13,12 @@ import 'package:easy_wallpapers/src/widgets/spacing_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 
 class MenuButtons extends StatefulWidget {
-  static const _chars =
-      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-  static final Random _rnd = Random();
-
   final FullScreenArguments arguments;
   final GlobalKey fullScreenGlobalKey;
 
@@ -33,9 +26,6 @@ class MenuButtons extends StatefulWidget {
 
   @override
   State<MenuButtons> createState() => _MenuButtonsState();
-
-  static String _getRandomString() => String.fromCharCodes(Iterable.generate(
-      8, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 }
 
 class _MenuButtonsState extends State<MenuButtons> {
@@ -159,7 +149,7 @@ class _MenuButtonsState extends State<MenuButtons> {
     return false;
   }
 
-  void _saveToGallery() async {
+  Future<void> _saveToGallery() async {
     HapticFeedback.mediumImpact();
 
     if (!await _isPermissionGranted()) return;
@@ -178,12 +168,12 @@ class _MenuButtonsState extends State<MenuButtons> {
         final ui.Image image = await boundary.toImage();
         final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
         final list = byteData!.buffer.asUint8List();
-        _saveImage(list);
+        await _saveImage(list);
       }
     }
   }
 
-  void _saveImage(Uint8List list) async {
+  Future<void> _saveImage(Uint8List list) async {
     final Map<dynamic, dynamic> result =
         await ImageGallerySaver.saveImage(list);
     final bool isSuccess = result['isSuccess'] ?? false;
@@ -198,56 +188,33 @@ class _MenuButtonsState extends State<MenuButtons> {
   }
 
   void _setWallpaper() async {
-    int? location = await _showSetWallpaperDialog();
+    final controller = EasyWallpaperController.of(context);
+    int? location = await _showSetWallpaperDialog(controller);
     if (location == null) return;
 
-    final ProgressDialog pd = ProgressDialog(context: _key.currentContext);
-    pd.show(
-        max: 100, msg: 'Downloading ...', progressType: ProgressType.valuable);
+    final arguments = widget.arguments;
+    final imagePath = await DefaultCacheManager()
+        .getSingleFile(arguments.list![arguments.selectedIndex!]);
+    await WallpaperManagerFlutter()
+        .setwallpaperfromFile(Directory(imagePath.path), location);
+    String locationStr;
+    if (location == WallpaperManagerFlutter.HOME_SCREEN) {
+      locationStr = 'Home Screen';
+    } else if (location == WallpaperManagerFlutter.LOCK_SCREEN) {
+      locationStr = 'Lock Screen';
+    } else {
+      locationStr = 'Both Screens';
+    }
 
-    try {
-      final dir = await getTemporaryDirectory();
-      final imagePath = "${dir.path}/{${MenuButtons._getRandomString}()}.jpg";
-      await Dio().download(
-        widget.arguments.item,
-        imagePath,
-        onReceiveProgress: (rec, total) {
-          int progress = (((rec / total) * 100).toInt());
-          pd.update(value: progress);
+    await showCustomAlertDialog(
+        _key.currentContext!, 'Info', 'Wallpaper is set to $locationStr');
 
-          if (rec == total) {
-            pd.close();
-          }
-        },
-      );
-
-      await WallpaperManagerFlutter()
-          .setwallpaperfromFile(Directory(imagePath), location);
-
-      String locationStr;
-      if (location == WallpaperManagerFlutter.HOME_SCREEN) {
-        locationStr = 'Home Screen';
-      } else if (location == WallpaperManagerFlutter.LOCK_SCREEN) {
-        locationStr = 'Lock Screen';
-      } else {
-        locationStr = 'Both Screens';
-      }
-
-      await showCustomAlertDialog(
-          _key.currentContext!, 'Info', 'Wallpaper is set to $locationStr');
-
-      if (context.mounted) {
-        EasyWallpaperController.of(context)
-            .onTapEvent
-            ?.call(context, WallpaperEventAction.setWallpaper);
-      }
-    } catch (e) {
-      showCustomAlertDialog(_key.currentContext!, 'Failed',
-          'Failed to set wallpaper. Please try later: ${e.toString()}');
+    if (context.mounted) {
+      controller.onTapEvent?.call(context, WallpaperEventAction.setWallpaper);
     }
   }
 
-  Future<int?> _showSetWallpaperDialog() {
+  Future<int?> _showSetWallpaperDialog(EasyWallpaperController controller) {
     return showDialog<int>(
       context: context,
       barrierDismissible: true,
@@ -256,7 +223,6 @@ class _MenuButtonsState extends State<MenuButtons> {
         children: [
           SimpleDialogOption(
             onPressed: () async {
-              final controller = EasyWallpaperController.of(context);
               bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
@@ -275,7 +241,6 @@ class _MenuButtonsState extends State<MenuButtons> {
           ),
           SimpleDialogOption(
             onPressed: () async {
-              final controller = EasyWallpaperController.of(context);
               bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);
@@ -294,7 +259,6 @@ class _MenuButtonsState extends State<MenuButtons> {
           ),
           SimpleDialogOption(
             onPressed: () async {
-              final controller = EasyWallpaperController.of(context);
               bool canSetOrDownload = true;
               if (controller.onSetOrDownloadWallpaper != null) {
                 await controller.onSetOrDownloadWallpaper?.call(context);

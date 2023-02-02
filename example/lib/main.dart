@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.blue, secondaryHeaderColor: Colors.orange),
+      theme: ThemeData.light(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -79,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
             placementBuilder: _addPlacements,
             onTapEvent: _onTapEvent,
-            onSetOrDownloadWallpaper: _downloadWallpaper,
+            // onSetOrDownloadWallpaper: _downloadWallpaper,
           );
         },
         tooltip: 'Increment',
