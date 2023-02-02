@@ -58,7 +58,8 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
                         .call(context, WallpaperPlacement.wallpaperHomeTop),
                   const VerticalSpacing(),
                   CategoryBuilder(controller.categories),
-                  _fetchTrendingWallpapers(context, 'Trending'),
+                  _fetchTrendingWallpapers(
+                      context, controller.categories.first.title),
                 ],
               ),
               const VerticalSpacing(),
