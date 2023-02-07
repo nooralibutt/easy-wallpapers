@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:easy_ads_flutter/easy_ads_flutter.dart';
 import 'package:easy_wallpapers/easy_wallpapers.dart';
 import 'package:example/model/mock_data.dart';
-import 'package:example/model/test_ad_id_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

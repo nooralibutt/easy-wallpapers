@@ -1,3 +1,8 @@
+## 1.0.4
+* Updates readme
+* Updates example package
+* Fix Cupertino dependency
+
 ## 1.0.3
 * Bug Fix on set wallpaper in android 
 * Fix some theme bugs

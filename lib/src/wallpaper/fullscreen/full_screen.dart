@@ -7,7 +7,6 @@ import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_placeholder.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/components/wallpaper_info.dart';
 import 'package:easy_wallpapers/src/widgets/color_filter_preview_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -116,8 +115,7 @@ class _FullScreenViewState extends State<FullScreenView> {
           Navigator.pop(_scaffoldKey.currentContext!);
         }
       },
-      icon: Icon(CupertinoIcons.clear_circled_solid,
-          color: Theme.of(context).secondaryHeaderColor));
+      icon: Icon(Icons.close, color: Theme.of(context).secondaryHeaderColor));
 
   void _onPageChanged(int page) {
     HapticFeedback.mediumImpact();

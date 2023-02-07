@@ -1,18 +1,16 @@
 name: example
 description: A new Flutter project.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
   sdk: '>=2.19.0 <3.0.0'
 
-# Dependencies specify other packages that
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.5
-  easy_ads_flutter: ^2.0.1
+  easy_ads_flutter: ^2.1.0
   easy_wallpapers:
     path: ../
 
