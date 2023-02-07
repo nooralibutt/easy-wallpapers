@@ -75,13 +75,13 @@ end
 
 in the `ios/Runner/Info.plist`
 
-```Plist
+```
 <key>NSPhotoLibraryAddUsageDescription</key>
 <string>To save wallpapers to gallery, we need this permission</string>
 ```
 
 ### For Android:
-- Add Following permission in the `manifest.xml` file in android project
+Add Following permission in the `manifest.xml` file in android project
 
 ```
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -111,19 +111,6 @@ final data = {
     "https://i.pinimg.com/564x/45/f3/fe/45f3fe07118a4798ff9079b630e6f72e.jpg",
     "https://i.pinimg.com/564x/da/55/90/da55902ca3c29caaf6267a5cd6be8da6.jpg",
   ],
-  "Boys": [
-    "https://i.pinimg.com/564x/a4/9f/59/a49f5962e50fd69c9fd61e3da6e21a66.jpg",
-    "https://i.pinimg.com/564x/a9/4f/10/a94f105d2df9ba2dd217f2f4f390b340.jpg",
-    "https://i.pinimg.com/564x/54/6c/14/546c14575789924ec3e302296f82d75f.jpg",
-    "https://i.pinimg.com/564x/6f/82/8f/6f828fef7a6ab80eba9887ea8a4840f2.jpg",
-  ],
-  "Realistic": [
-    "https://i.pinimg.com/564x/31/19/c3/3119c32ef4d9c4c01ae6ae4e8842dad3.jpg",
-    "https://i.pinimg.com/564x/56/02/8a/56028a10e3243009d52bc0a4f9df7e65.jpg",
-    "https://i.pinimg.com/564x/65/54/4e/65544ea641ffdb47949064e39daa46c9.jpg",
-    "https://i.pinimg.com/564x/df/67/56/df67564e8ab85ccbed7131e879e32665.jpg",
-    "https://i.pinimg.com/564x/eb/4c/92/eb4c9273c2eaaed935cc4ef317c38754.jpg",
-  ]
 };
 
 ```
