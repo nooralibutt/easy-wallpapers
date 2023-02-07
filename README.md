@@ -72,6 +72,14 @@ post_install do |installer|
   end
 end
 ```
+
+in the `ios/Runner/Info.plist`
+
+```Plist
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>To save wallpapers to gallery, we need this permission</string>
+```
+
 ### For Android:
 - Add Following permission in the `manifest.xml` file in android project
 
