@@ -78,6 +78,8 @@ in the `ios/Runner/Info.plist`
 ```
 <key>NSPhotoLibraryAddUsageDescription</key>
 <string>To save wallpapers to gallery, we need this permission</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>To save wallpapers to gallery, we need this permission</string>
 ```
 
 ### For Android:
