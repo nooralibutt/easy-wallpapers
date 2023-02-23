@@ -1,6 +1,7 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
 import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
+import 'package:easy_wallpapers/src/models/wallpaper_category.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/utilities/prefs.dart';
 import 'package:easy_wallpapers/src/wallpaper/category/category_screen.dart';
@@ -34,6 +35,11 @@ class EasyWallpaperApp extends StatelessWidget {
   /// automatically and create a new category called trending
   final bool isTrendingEnabled;
 
+  /// If [isCacheEnabled = true], package gather all wallpapers urls
+  /// automatically from the shared preferences and get all wallpapers from the
+  /// cache from url as cache key
+  final bool isCacheEnabled;
+
   const EasyWallpaperApp({
     Key? key,
     required this.wallpaperUrls,
@@ -44,58 +50,74 @@ class EasyWallpaperApp extends StatelessWidget {
     this.onSetOrDownloadWallpaper,
     this.placementBuilder,
     this.isTrendingEnabled = true,
+    this.isCacheEnabled = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (!isCacheEnabled) {
+      Prefs.instance.init();
+      return _buildEasyWallpaperController(
+          wallpaperUrls, context, NetworkManager.getCategories(wallpaperUrls));
+    }
+
     return FutureBuilder(
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> savedWalls = wallpaperUrls;
           if (wallpaperUrls.isNotEmpty) {
             Prefs.instance.setWallpapersData(wallpaperUrls);
+          } else {
+            savedWalls = Prefs.instance.getWallpapersData() ?? {};
           }
-          final getSavedWalls = Prefs.instance.getWallpapersData() ?? {};
-          final wallpaperCategories =
-              NetworkManager.getCategories(getSavedWalls);
+          final wallpaperCategories = NetworkManager.getCategories(savedWalls);
 
-          final child = EasyWallpaperController(
-            wallpaperUrls: getSavedWalls,
-            leadingTitle: leadingTitle,
-            title: title,
-            placementBuilder: placementBuilder,
-            onTapEvent: onTapEvent,
-            onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
-            context: context,
-            bgImage: bgImage,
-            categories: wallpaperCategories ?? [],
-            isTrendingEnabled: isTrendingEnabled,
-
-            /// Package has its own navigation
-            child: Navigator(
-              initialRoute: WallpaperHomeScreen.routeName,
-              onGenerateRoute: (settings) {
-                switch (settings.name) {
-                  case WallpaperHomeScreen.routeName:
-                    return _generatePage(const WallpaperHomeScreen());
-                  case FavoriteWallpapersScreen.routeName:
-                    return _generatePage(const FavoriteWallpapersScreen());
-                  case CategoryScreen.routeName:
-                    return _generatePage(
-                        CategoryScreen(category: settings.arguments as String));
-                  case FullScreenView.routeName:
-                    return _generatePage(FullScreenView(
-                        arguments: settings.arguments as FullScreenArguments));
-                }
-                return null;
-              },
-            ),
-          );
+          final child = _buildEasyWallpaperController(
+              savedWalls, context, wallpaperCategories);
           return child;
         }
 
         return const Center(child: CircularProgressIndicator.adaptive());
       },
       future: Prefs.instance.init(),
+    );
+  }
+
+  EasyWallpaperController _buildEasyWallpaperController(
+      Map<String, dynamic> savedWalls,
+      BuildContext context,
+      List<WallpaperCategory>? wallpaperCategories) {
+    return EasyWallpaperController(
+      wallpaperUrls: savedWalls,
+      leadingTitle: leadingTitle,
+      title: title,
+      placementBuilder: placementBuilder,
+      onTapEvent: onTapEvent,
+      onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
+      context: context,
+      bgImage: bgImage,
+      categories: wallpaperCategories ?? [],
+      isTrendingEnabled: isTrendingEnabled,
+
+      /// Package has its own navigation
+      child: Navigator(
+        initialRoute: WallpaperHomeScreen.routeName,
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case WallpaperHomeScreen.routeName:
+              return _generatePage(const WallpaperHomeScreen());
+            case FavoriteWallpapersScreen.routeName:
+              return _generatePage(const FavoriteWallpapersScreen());
+            case CategoryScreen.routeName:
+              return _generatePage(
+                  CategoryScreen(category: settings.arguments as String));
+            case FullScreenView.routeName:
+              return _generatePage(FullScreenView(
+                  arguments: settings.arguments as FullScreenArguments));
+          }
+          return null;
+        },
+      ),
     );
   }
 
