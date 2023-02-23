@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Prefs {
@@ -12,6 +14,7 @@ class Prefs {
   static late SharedPreferences _prefs;
 
   static const _keyFavWalls = "FAV_WALLS";
+  static const _keyAllWalls = "ALL_WALLS";
 
   Future<void> init() async => _prefs = await SharedPreferences.getInstance();
 
@@ -26,4 +29,13 @@ class Prefs {
   }
 
   List<String> getFavWallpapers() => _prefs.getStringList(_keyFavWalls) ?? [];
+
+  void setWallpapersData(Map<String, dynamic> wallpapersData) =>
+      _prefs.setString(_keyAllWalls, json.encode(wallpapersData));
+
+  Map<String, dynamic>? getWallpapersData() {
+    final prefWalls = _prefs.getString(_keyAllWalls);
+    if (prefWalls == null) return null;
+    return jsonDecode(prefWalls);
+  }
 }

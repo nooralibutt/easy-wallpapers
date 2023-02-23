@@ -48,40 +48,54 @@ class EasyWallpaperApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Prefs.instance.init();
-    final wallpaperCategories = NetworkManager.getCategories(wallpaperUrls);
-
-    return EasyWallpaperController(
-      wallpaperUrls: wallpaperUrls,
-      leadingTitle: leadingTitle,
-      title: title,
-      placementBuilder: placementBuilder,
-      onTapEvent: onTapEvent,
-      onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
-      context: context,
-      bgImage: bgImage,
-      categories: wallpaperCategories ?? [],
-      isTrendingEnabled: isTrendingEnabled,
-
-      /// Package has its own navigation
-      child: Navigator(
-        initialRoute: WallpaperHomeScreen.routeName,
-        onGenerateRoute: (settings) {
-          switch (settings.name) {
-            case WallpaperHomeScreen.routeName:
-              return _generatePage(const WallpaperHomeScreen());
-            case FavoriteWallpapersScreen.routeName:
-              return _generatePage(const FavoriteWallpapersScreen());
-            case CategoryScreen.routeName:
-              return _generatePage(
-                  CategoryScreen(category: settings.arguments as String));
-            case FullScreenView.routeName:
-              return _generatePage(FullScreenView(
-                  arguments: settings.arguments as FullScreenArguments));
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (wallpaperUrls.isNotEmpty) {
+            Prefs.instance.setWallpapersData(wallpaperUrls);
           }
-          return null;
-        },
-      ),
+          final getSavedWalls = Prefs.instance.getWallpapersData() ?? {};
+          final wallpaperCategories =
+              NetworkManager.getCategories(getSavedWalls);
+
+          final child = EasyWallpaperController(
+            wallpaperUrls: getSavedWalls,
+            leadingTitle: leadingTitle,
+            title: title,
+            placementBuilder: placementBuilder,
+            onTapEvent: onTapEvent,
+            onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
+            context: context,
+            bgImage: bgImage,
+            categories: wallpaperCategories ?? [],
+            isTrendingEnabled: isTrendingEnabled,
+
+            /// Package has its own navigation
+            child: Navigator(
+              initialRoute: WallpaperHomeScreen.routeName,
+              onGenerateRoute: (settings) {
+                switch (settings.name) {
+                  case WallpaperHomeScreen.routeName:
+                    return _generatePage(const WallpaperHomeScreen());
+                  case FavoriteWallpapersScreen.routeName:
+                    return _generatePage(const FavoriteWallpapersScreen());
+                  case CategoryScreen.routeName:
+                    return _generatePage(
+                        CategoryScreen(category: settings.arguments as String));
+                  case FullScreenView.routeName:
+                    return _generatePage(FullScreenView(
+                        arguments: settings.arguments as FullScreenArguments));
+                }
+                return null;
+              },
+            ),
+          );
+          return child;
+        }
+
+        return const Center(child: CircularProgressIndicator.adaptive());
+      },
+      future: Prefs.instance.init(),
     );
   }
 
