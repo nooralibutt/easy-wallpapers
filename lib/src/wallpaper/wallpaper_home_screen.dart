@@ -56,7 +56,8 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
                     controller.placementBuilder!
                         .call(context, WallpaperPlacement.wallpaperHomeTop),
                   const VerticalSpacing(),
-                  CategoryBuilder(controller.categories),
+                  if (controller.categories.length > 1)
+                    CategoryBuilder(controller.categories),
                   _fetchTrendingWallpapers(controller),
                 ],
               ),
@@ -70,31 +71,43 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
 
   Widget _fetchTrendingWallpapers(EasyWallpaperController controller) {
     List<String> wallpapers = [];
-    if (controller.categories.isNotEmpty) {
+    if (controller.categories.length == 1) {
+      wallpapers = NetworkManager.getWallpapersByCategory(
+              controller.categories.first.title, controller.wallpaperUrls) ??
+          [];
+      if (wallpapers.isNotEmpty) {
+        return WallpaperListing(wallpapers, _scrollController);
+      } else {
+        return emptyWallsText;
+      }
+    }
+
+    if (controller.isTrendingEnabled) {
+      final List<String> trendingWallpapers = [];
+      for (final element in controller.categories) {
+        final walls =
+            List<String>.from(controller.wallpaperUrls[element.title]);
+        trendingWallpapers.addAll(walls);
+      }
+      wallpapers = trendingWallpapers;
+    } else if (controller.categories.isNotEmpty) {
       wallpapers = NetworkManager.getWallpapersByCategory(
               controller.categories.first.title, controller.wallpaperUrls) ??
           [];
     }
-    if (controller.isTrendingEnabled) {
-      final List<String> trendingWallpapers = [];
-      for (var element in controller.categories) {
-        final category =
-            controller.wallpaperUrls[element.title] as List<String>;
-        trendingWallpapers.addAll(category);
-      }
-      wallpapers = trendingWallpapers;
-    }
 
     if (wallpapers.isEmpty) {
-      return Text(
-        'There is something wrong!\nPlease check your internet connection',
-        textAlign: TextAlign.center,
-        style: Theme.of(context)
-            .textTheme
-            .titleSmall!
-            .copyWith(color: Colors.white),
-      );
+      return emptyWallsText;
     }
     return WallpaperListing(wallpapers, _scrollController);
+  }
+
+  Text get emptyWallsText {
+    return Text(
+      'There is something wrong!\nPlease check your internet connection',
+      textAlign: TextAlign.center,
+      style:
+          Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),
+    );
   }
 }
