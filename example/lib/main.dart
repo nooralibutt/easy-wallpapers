@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Center(
         child: EasyWallpaperApp(
-          wallpaperUrls: data,
+          wallpaperUrls: {},
           title: 'Wallpapers',
           leadingTitle: 'Nice',
           bgImage:
