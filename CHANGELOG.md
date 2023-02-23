@@ -1,3 +1,8 @@
+## 1.1.0
+* Support for cache wallpapers if [isCacheEnabled = true]
+* Auto add wallpapers in home screen if [isTrendingEnabled = true]
+* Fix Issues
+
 ## 1.0.4
 * Updates readme
 * Updates example package
