@@ -24,15 +24,17 @@ There are two ways to use Easy Wallpaper.
 
 ```dart
 EasyWallpaperApp.launchApp(
-context,
-wallpaperUrls: data,
-leadingTitle: '4k',
-title: 'Wallpapers',
-bgImage:
-'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
-placementBuilder: _addPlacements,
-onTapEvent: _onTapEvent,
-onSetOrDownloadWallpaper: _downloadWallpaper,
+    context,
+    wallpaperUrls: data,
+    leadingTitle: '4k',
+    title: 'Wallpapers',
+    bgImage:
+    'https://i.pinimg.com/564x/99/83/87/9983876e5771924849c55d19ee7fec5a.jpg',
+    placementBuilder: _addPlacements,
+    onTapEvent: _onTapEvent,
+    onSetOrDownloadWallpaper: _downloadWallpaper,
+    isTrendingEnabled: true,
+    isCacheEnabled: true,
 ),
 ```
 

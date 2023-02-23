@@ -65,6 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
           placementBuilder: _addPlacements,
           onTapEvent: _onTapEvent,
           onSetOrDownloadWallpaper: _downloadWallpaper,
+          isTrendingEnabled: true,
+          isCacheEnabled: true,
         ),
       ),
       floatingActionButton: FloatingActionButton(

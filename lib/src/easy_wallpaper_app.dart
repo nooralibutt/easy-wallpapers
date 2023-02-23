@@ -50,7 +50,7 @@ class EasyWallpaperApp extends StatelessWidget {
     this.onSetOrDownloadWallpaper,
     this.placementBuilder,
     this.isTrendingEnabled = true,
-    this.isCacheEnabled = false,
+    this.isCacheEnabled = true,
   }) : super(key: key);
 
   @override
@@ -145,6 +145,15 @@ class EasyWallpaperApp extends StatelessWidget {
 
     /// [onSetOrDownloadWallpaper] will be call when user set or download wallpaper
     final Future<bool> Function(BuildContext)? onSetOrDownloadWallpaper,
+
+    /// If this [isTrendingEnabled = true], package gather all wallpapers
+    /// automatically and create a new category called trending
+    final bool isTrendingEnabled = true,
+
+    /// If [isCacheEnabled = true], package gather all wallpapers urls
+    /// automatically from the shared preferences and get all wallpapers from the
+    /// cache from url as cache key
+    final bool isCacheEnabled = true,
   }) =>
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -158,6 +167,8 @@ class EasyWallpaperApp extends StatelessWidget {
               placementBuilder: placementBuilder,
               onTapEvent: onTapEvent,
               onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
+              isCacheEnabled: isCacheEnabled,
+              isTrendingEnabled: isTrendingEnabled,
             ),
           ),
         ),
