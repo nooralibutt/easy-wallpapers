@@ -32,7 +32,7 @@ class EasyWallpaperApp extends StatelessWidget {
 
   /// If this [isTrendingEnabled = true], package gather all wallpapers
   /// automatically and create a new category called trending
-  final bool? isTrendingEnabled;
+  final bool isTrendingEnabled;
 
   const EasyWallpaperApp({
     Key? key,
@@ -43,7 +43,7 @@ class EasyWallpaperApp extends StatelessWidget {
     this.onTapEvent,
     this.onSetOrDownloadWallpaper,
     this.placementBuilder,
-    this.isTrendingEnabled,
+    this.isTrendingEnabled = true,
   }) : super(key: key);
 
   @override
@@ -61,7 +61,7 @@ class EasyWallpaperApp extends StatelessWidget {
       context: context,
       bgImage: bgImage,
       categories: wallpaperCategories ?? [],
-      isTrendingEnabled: isTrendingEnabled ?? true,
+      isTrendingEnabled: isTrendingEnabled,
 
       /// Package has its own navigation
       child: Navigator(
