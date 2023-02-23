@@ -59,8 +59,7 @@ class _FavoriteWallpapersScreenState extends State<FavoriteWallpapersScreen> {
         controller: _scrollController,
         child: Column(
           children: [
-            const VerticalSpacing(of: 60),
-            SizedBox(height: MediaQuery.of(context).padding.top),
+            SizedBox(height: MediaQuery.of(context).padding.top + 60),
             WallpaperListing(
               favWallpapers,
               _scrollController,
