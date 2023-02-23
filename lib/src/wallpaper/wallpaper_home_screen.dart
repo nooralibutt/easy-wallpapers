@@ -58,8 +58,7 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
                         .call(context, WallpaperPlacement.wallpaperHomeTop),
                   const VerticalSpacing(),
                   CategoryBuilder(controller.categories),
-                  _fetchTrendingWallpapers(
-                      context, controller.categories.first.title),
+                  _fetchTrendingWallpapers(context),
                 ],
               ),
               const VerticalSpacing(),
@@ -70,10 +69,22 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
     );
   }
 
-  Widget _fetchTrendingWallpapers(BuildContext context, String category) {
-    final wallpapers = NetworkManager.getWallpapersByCategory(
-            category, EasyWallpaperController.of(context).wallpaperUrls) ??
+  Widget _fetchTrendingWallpapers(BuildContext context) {
+    final controller = EasyWallpaperController.of(context);
+    List<String> wallpapers = NetworkManager.getWallpapersByCategory(
+            controller.categories.first.title, controller.wallpaperUrls) ??
         [];
+
+    if (controller.isTrendingEnabled) {
+      final List<String> trendingWallpapers = [];
+      for (var element in controller.categories) {
+        final category =
+            controller.wallpaperUrls[element.title] as List<String>;
+        trendingWallpapers.addAll(category);
+      }
+      wallpapers = trendingWallpapers;
+    }
+
     if (wallpapers.isEmpty) {
       return const Text(
         'There is something wrong!\nPlease check your internet connection',

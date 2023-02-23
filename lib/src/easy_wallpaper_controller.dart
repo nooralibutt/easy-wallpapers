@@ -14,6 +14,7 @@ class EasyWallpaperController extends InheritedWidget {
     required this.wallpaperUrls,
     required super.child,
     this.placementBuilder,
+    this.isTrendingEnabled = true,
     this.onTapEvent,
     this.onSetOrDownloadWallpaper,
     required this.categories,
@@ -42,6 +43,11 @@ class EasyWallpaperController extends InheritedWidget {
   final Future<bool> Function(BuildContext)? onSetOrDownloadWallpaper;
 
   final List<WallpaperCategory> categories;
+
+  /// If this [isTrendingEnabled = true], package gather all wallpapers
+  /// automatically and create a new category called trending
+  final bool isTrendingEnabled;
+
   final BuildContext context;
 
   static EasyWallpaperController? maybeOf(BuildContext context) {
