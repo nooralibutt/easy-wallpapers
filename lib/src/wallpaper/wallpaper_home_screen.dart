@@ -49,17 +49,16 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const VerticalSpacing(of: 60),
-              SizedBox(height: MediaQuery.of(context).padding.top),
+              SizedBox(height: MediaQuery.of(context).padding.top + 60),
               Column(
                 children: [
                   if (controller.placementBuilder != null)
                     controller.placementBuilder!
                         .call(context, WallpaperPlacement.wallpaperHomeTop),
                   const VerticalSpacing(),
-                  CategoryBuilder(controller.categories),
-                  _fetchTrendingWallpapers(
-                      context, controller.categories.first.title),
+                  if (controller.categories.length > 1)
+                    CategoryBuilder(controller.categories),
+                  _fetchTrendingWallpapers(controller),
                 ],
               ),
               const VerticalSpacing(),
@@ -70,16 +69,45 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
     );
   }
 
-  Widget _fetchTrendingWallpapers(BuildContext context, String category) {
-    final wallpapers = NetworkManager.getWallpapersByCategory(
-            category, EasyWallpaperController.of(context).wallpaperUrls) ??
-        [];
+  Widget _fetchTrendingWallpapers(EasyWallpaperController controller) {
+    List<String> wallpapers = [];
+    if (controller.categories.length == 1) {
+      wallpapers = NetworkManager.getWallpapersByCategory(
+              controller.categories.first.title, controller.wallpaperUrls) ??
+          [];
+      if (wallpapers.isNotEmpty) {
+        return WallpaperListing(wallpapers, _scrollController);
+      } else {
+        return emptyWallsText;
+      }
+    }
+
+    if (controller.isTrendingEnabled) {
+      final List<String> trendingWallpapers = [];
+      for (final element in controller.categories) {
+        final walls =
+            List<String>.from(controller.wallpaperUrls[element.title]);
+        trendingWallpapers.addAll(walls);
+      }
+      wallpapers = trendingWallpapers;
+    } else if (controller.categories.isNotEmpty) {
+      wallpapers = NetworkManager.getWallpapersByCategory(
+              controller.categories.first.title, controller.wallpaperUrls) ??
+          [];
+    }
+
     if (wallpapers.isEmpty) {
-      return const Text(
-        'There is something wrong!\nPlease check your internet connection',
-        textAlign: TextAlign.center,
-      );
+      return emptyWallsText;
     }
     return WallpaperListing(wallpapers, _scrollController);
+  }
+
+  Text get emptyWallsText {
+    return Text(
+      'There is something wrong!\nPlease check your internet connection',
+      textAlign: TextAlign.center,
+      style:
+          Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.white),
+    );
   }
 }

@@ -10,8 +10,11 @@ class NetworkManager {
 
     try {
       wallpaperUrls.forEach((key, value) {
-        _categories.add(WallpaperCategory(
-            key.toString(), (value as List<dynamic>).first as String));
+        final walls = value as List<dynamic>;
+        if (walls.isNotEmpty) {
+          _categories
+              .add(WallpaperCategory(key.toString(), walls.first as String));
+        }
       });
 
       return _categories;

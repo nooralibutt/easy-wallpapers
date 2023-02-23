@@ -12,8 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  shared_preferences: ^2.0.17
-  device_info_plus: ^8.0.0
+  shared_preferences: ^2.0.18
+  device_info_plus: ^8.1.0
   wallpaper_manager_flutter: ^0.0.2
   # to save wallpapers to gallery
   image_gallery_saver: ^1.7.1

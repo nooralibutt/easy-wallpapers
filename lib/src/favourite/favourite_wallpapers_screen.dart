@@ -45,16 +45,21 @@ class _FavoriteWallpapersScreenState extends State<FavoriteWallpapersScreen> {
 
   Widget _buildBody() {
     if (favWallpapers.isEmpty) {
-      return const Center(
+      return Center(
           child: Text(
-        'There are no favourite wallpapers yet',
+        'There are no favourite\nwallpapers yet',
+        textAlign: TextAlign.center,
+        style: Theme.of(context)
+            .textTheme
+            .titleSmall!
+            .copyWith(color: Colors.white),
       ));
     }
     return SingleChildScrollView(
         controller: _scrollController,
         child: Column(
           children: [
-            const VerticalSpacing(),
+            SizedBox(height: MediaQuery.of(context).padding.top + 60),
             WallpaperListing(
               favWallpapers,
               _scrollController,
