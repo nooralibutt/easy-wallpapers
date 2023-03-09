@@ -52,9 +52,7 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
             children: [
 
               SizedBox(height: MediaQuery.of(context).padding.top + 60),
-              TextButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const TestScreen()));
-              }, child: const Text("Press me")),
+
               Column(
                 children: [
                   if (controller.placementBuilder != null)

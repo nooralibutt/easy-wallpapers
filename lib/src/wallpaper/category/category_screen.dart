@@ -2,6 +2,7 @@ import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/models/enums.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
+import 'package:easy_wallpapers/src/widgets/background_widget.dart';
 import 'package:easy_wallpapers/src/widgets/header_text.dart';
 import 'package:easy_wallpapers/src/widgets/spacing_widgets.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final controller = EasyWallpaperController.of(context);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).secondaryHeaderColor),
         title: HomeHeaderText(
@@ -36,8 +39,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Container(
-        decoration: widget.img.isNotEmpty?BoxDecoration(image: DecorationImage(image: AssetImage(widget.img))):const BoxDecoration(),
+      body: BlurBackgroundWidget(
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Column(
