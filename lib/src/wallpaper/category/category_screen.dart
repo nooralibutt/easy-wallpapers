@@ -43,6 +43,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
           controller: _scrollController,
           child: Column(
             children: [
+              SizedBox(height: MediaQuery.of(context).padding.top + 60),
+
               if (controller.placementBuilder != null)
                 controller.placementBuilder!
                     .call(context, WallpaperPlacement.wallpaperCategoryTop),
