@@ -109,7 +109,7 @@ class EasyWallpaperApp extends StatelessWidget {
               return _generatePage(const FavoriteWallpapersScreen());
             case CategoryScreen.routeName:
               return _generatePage(
-                  CategoryScreen(category: settings.arguments as String,img: bgImage??"",));
+                  CategoryScreen(category: settings.arguments as String,));
             case FullScreenView.routeName:
               return _generatePage(FullScreenView(
                   arguments: settings.arguments as FullScreenArguments));
