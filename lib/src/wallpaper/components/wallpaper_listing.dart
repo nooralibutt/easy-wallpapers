@@ -79,8 +79,13 @@ class _WallpaperListingState extends State<WallpaperListing> {
         FullScreenArguments(list: list, selectedIndex: list.indexOf(str));
 
     if (arguments.list != null) {
-      Navigator.pushNamed(context, FullScreenView.routeName,
+      /*   Navigator.pushNamed(context, FullScreenView.routeName,
               arguments: arguments)
+          .then((_) => widget.onPopFullScreen?.call());*/
+      Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FullScreenView(arguments: arguments)))
           .then((_) => widget.onPopFullScreen?.call());
     }
   }

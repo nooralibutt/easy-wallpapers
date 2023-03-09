@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 class CategoryScreen extends StatefulWidget {
   static const String routeName = "/categoryScreen";
   final String category;
-  const CategoryScreen({super.key, required this.category});
-
+  final String img;
+  const CategoryScreen({super.key, required this.category, required this.img});
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
@@ -36,17 +36,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          children: [
-            if (controller.placementBuilder != null)
-              controller.placementBuilder!
-                  .call(context, WallpaperPlacement.wallpaperCategoryTop),
-            const VerticalSpacing(),
-            _fetchTrendingWallpapers(context, widget.category),
-            const VerticalSpacing(),
-          ],
+      body: Container(
+        decoration: widget.img.isNotEmpty?BoxDecoration(image: DecorationImage(image: AssetImage(widget.img))):const BoxDecoration(),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            children: [
+              if (controller.placementBuilder != null)
+                controller.placementBuilder!
+                    .call(context, WallpaperPlacement.wallpaperCategoryTop),
+              const VerticalSpacing(),
+              _fetchTrendingWallpapers(context, widget.category),
+              const VerticalSpacing(),
+            ],
+          ),
         ),
       ),
     );

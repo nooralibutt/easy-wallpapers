@@ -1,5 +1,6 @@
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/models/enums.dart';
+import 'package:easy_wallpapers/src/test_screen.dart';
 import 'package:easy_wallpapers/src/utilities/network_manager.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/category_builder.dart';
 import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_listing.dart';
@@ -49,7 +50,11 @@ class _WallpaperHomeScreenState extends State<WallpaperHomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               SizedBox(height: MediaQuery.of(context).padding.top + 60),
+              TextButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const TestScreen()));
+              }, child: const Text("Press me")),
               Column(
                 children: [
                   if (controller.placementBuilder != null)

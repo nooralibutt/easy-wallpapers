@@ -40,7 +40,7 @@ class EasyWallpaperApp extends StatelessWidget {
   /// cache from url as cache key
   final bool isCacheEnabled;
 
-  const EasyWallpaperApp({
+   EasyWallpaperApp({
     Key? key,
     required this.wallpaperUrls,
     required this.title,
@@ -98,7 +98,6 @@ class EasyWallpaperApp extends StatelessWidget {
       bgImage: bgImage,
       categories: wallpaperCategories ?? [],
       isTrendingEnabled: isTrendingEnabled,
-
       /// Package has its own navigation
       child: Navigator(
         initialRoute: WallpaperHomeScreen.routeName,
@@ -110,7 +109,7 @@ class EasyWallpaperApp extends StatelessWidget {
               return _generatePage(const FavoriteWallpapersScreen());
             case CategoryScreen.routeName:
               return _generatePage(
-                  CategoryScreen(category: settings.arguments as String));
+                  CategoryScreen(category: settings.arguments as String,img: bgImage??"",));
             case FullScreenView.routeName:
               return _generatePage(FullScreenView(
                   arguments: settings.arguments as FullScreenArguments));
