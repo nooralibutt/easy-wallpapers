@@ -1,6 +1,7 @@
 import 'package:easy_wallpapers/src/favourite/favourite_wallpapers_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class HomeHeaderText extends StatelessWidget {
   final String? leadingText;
@@ -41,6 +42,17 @@ class HomeHeaderText extends StatelessWidget {
           onPressed: () {
             HapticFeedback.selectionClick();
             Navigator.pushNamed(context, FavoriteWallpapersScreen.routeName);
+          },
+        ),
+        IconButton(
+          iconSize: 30.0,
+          icon: const Icon(Icons.rate_review, color: Colors.cyan),
+          onPressed: () async{
+            final InAppReview inAppReview = InAppReview.instance;
+
+            if (await inAppReview.isAvailable()) {
+            inAppReview.requestReview();
+            }
           },
         )
       ],
