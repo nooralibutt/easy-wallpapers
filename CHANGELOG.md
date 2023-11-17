@@ -1,3 +1,6 @@
+## 1.1.1
+* Update Dependencies and flutter version
+
 ## 1.1.0
 * Support for cache wallpapers if [isCacheEnabled = true]
 * Auto add wallpapers in home screen if [isTrendingEnabled = true]
