@@ -1,13 +1,13 @@
 import 'dart:io';
 
+import 'package:easy_wallpapers/src/utilities/constants.dart';
 import 'package:easy_wallpapers/src/wallpaper/fullscreen/lock_screen_container.dart';
 import 'package:easy_wallpapers/src/widgets/spacing_widgets.dart';
 import 'package:flutter/material.dart';
 
 class WallpaperHomeDisplay extends StatelessWidget {
-  static const String imagePathBaseIos = 'assets/images/wallpapers/ios/';
-  static const String imagePathBaseAndroid =
-      'assets/images/wallpapers/android/';
+  static const String imagePathBaseIos = baseAssetUrlIos;
+  static const String imagePathBaseAndroid = baseAssetUrlAndroid;
 
   static const List<String> iOSIcons = [
     'App Store',
@@ -105,7 +105,7 @@ class DisplayWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('$imagePath$name.png'),
+              Image.network('$imagePath$name.png'),
               const VerticalSpacing(of: 5),
               FittedBox(
                 fit: BoxFit.fitWidth,
@@ -133,8 +133,8 @@ class GoogleSearchWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         children: [
-          Image.asset(
-            'assets/images/wallpapers/android/google_search.png',
+          Image.network(
+            '${baseAssetUrlAndroid}google_search.png',
             height: 22,
           ),
           const Spacer(),
