@@ -1,6 +1,6 @@
 name: easy_wallpapers
 description: This package is used for integrate wallpapers in the app and provide customizations in the wallpapers.
-version: 1.1.1
+version: 1.1.2
 homepage: https://github.com/nooralibutt/easy-wallpapers
 repository: https://github.com/nooralibutt/easy-wallpapers
 
@@ -32,8 +32,3 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 
 flutter:
-
-  assets:
-    - assets/images/
-    - assets/images/wallpapers/ios/
-    - assets/images/wallpapers/android/

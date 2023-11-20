@@ -1,3 +1,6 @@
+## 1.1.2
+* Fix Asset Loading issues
+
 ## 1.1.1
 * Update Dependencies and flutter version
 
