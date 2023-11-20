@@ -5,6 +5,11 @@ import 'package:easy_wallpapers/src/wallpaper/components/wallpaper_placeholder.d
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+const baseAssetUrlAndroid =
+    'http://github.com/nooralibutt/easy-wallpapers/raw/master/assets/images/wallpapers/android/';
+const baseAssetUrlIos =
+    'http://github.com/nooralibutt/easy-wallpapers/raw/master/assets/images/wallpapers/ios/';
+
 Future showCustomAlertDialog(BuildContext context, String title, String message,
     [String? buttonTitle]) {
   return showDialog(

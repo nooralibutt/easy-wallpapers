@@ -21,7 +21,8 @@ class ColorFilterPreviewItem extends StatelessWidget {
             height: 80,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/wallpapers/home_bg.jpg'),
+                image: NetworkImage(
+                    'https://github.com/nooralibutt/easy-wallpapers/raw/master/assets/images/wallpapers/home_bg.jpg'),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.all(
