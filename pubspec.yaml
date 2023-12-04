@@ -14,7 +14,7 @@ dependencies:
 
   shared_preferences: ^2.2.2
   device_info_plus: ^9.1.0
-  wallpaper_manager_flutter: ^0.0.2
+  flutter_wallpaper_manager: ^0.0.4
   # to save wallpapers to gallery
   image_gallery_saver: ^2.0.3
   # to get storage permission from user for saving wallpapers
