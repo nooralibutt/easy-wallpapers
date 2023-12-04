@@ -1,3 +1,6 @@
+## 1.2.0
+* Update deprecated package
+
 ## 1.1.2
 * Fix Asset Loading issues
 
