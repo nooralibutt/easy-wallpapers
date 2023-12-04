@@ -14,9 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 
 class MenuButtons extends StatefulWidget {
   final FullScreenArguments arguments;
@@ -195,12 +195,11 @@ class _MenuButtonsState extends State<MenuButtons> {
     final arguments = widget.arguments;
     final imagePath = await DefaultCacheManager()
         .getSingleFile(arguments.list![arguments.selectedIndex!]);
-    await WallpaperManagerFlutter()
-        .setwallpaperfromFile(Directory(imagePath.path), location);
+    await WallpaperManager.setWallpaperFromFile(imagePath.path, location);
     String locationStr;
-    if (location == WallpaperManagerFlutter.HOME_SCREEN) {
+    if (location == WallpaperManager.HOME_SCREEN) {
       locationStr = 'Home Screen';
-    } else if (location == WallpaperManagerFlutter.LOCK_SCREEN) {
+    } else if (location == WallpaperManager.LOCK_SCREEN) {
       locationStr = 'Lock Screen';
     } else {
       locationStr = 'Both Screens';
@@ -228,7 +227,7 @@ class _MenuButtonsState extends State<MenuButtons> {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
               if (context.mounted && canSetOrDownload) {
-                Navigator.pop(context, WallpaperManagerFlutter.HOME_SCREEN);
+                Navigator.pop(context, WallpaperManager.HOME_SCREEN);
               }
             },
             child: Row(
@@ -246,7 +245,7 @@ class _MenuButtonsState extends State<MenuButtons> {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
               if (context.mounted && canSetOrDownload) {
-                Navigator.pop(context, WallpaperManagerFlutter.LOCK_SCREEN);
+                Navigator.pop(context, WallpaperManager.LOCK_SCREEN);
               }
             },
             child: Row(
@@ -264,7 +263,7 @@ class _MenuButtonsState extends State<MenuButtons> {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
               if (context.mounted && canSetOrDownload) {
-                Navigator.pop(context, WallpaperManagerFlutter.BOTH_SCREENS);
+                Navigator.pop(context, WallpaperManager.BOTH_SCREEN);
               }
             },
             child: Row(
