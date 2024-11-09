@@ -1,3 +1,6 @@
+## 1.3.0
+* Updated dependencies
+
 ## 1.2.0
 * Update deprecated package
 

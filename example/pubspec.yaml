@@ -4,13 +4,13 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
+  sdk: ^3.5.3
 
 dependencies:
   flutter:
     sdk: flutter
 
-  easy_ads_flutter: ^2.4.0
+  easy_ads_flutter: ^2.7.0
   easy_wallpapers:
     path: ../
 
