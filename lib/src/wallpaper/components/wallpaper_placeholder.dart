@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WallpaperPlaceholder extends StatelessWidget {
-  const WallpaperPlaceholder({Key? key}) : super(key: key);
+  const WallpaperPlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {

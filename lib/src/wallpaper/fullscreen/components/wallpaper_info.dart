@@ -9,8 +9,8 @@ class WallpaperInfo extends StatefulWidget {
 
   const WallpaperInfo(
     this.wallpaperUrl, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<WallpaperInfo> createState() => _WallpaperInfoState();

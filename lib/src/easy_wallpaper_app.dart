@@ -41,7 +41,7 @@ class EasyWallpaperApp extends StatelessWidget {
   final bool isCacheEnabled;
 
   const EasyWallpaperApp({
-    Key? key,
+    super.key,
     required this.wallpaperUrls,
     required this.title,
     this.leadingTitle,
@@ -51,7 +51,7 @@ class EasyWallpaperApp extends StatelessWidget {
     this.placementBuilder,
     this.isTrendingEnabled = true,
     this.isCacheEnabled = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

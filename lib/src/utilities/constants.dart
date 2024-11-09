@@ -42,12 +42,11 @@ class CachedNetworkAssetImage extends StatelessWidget {
   final double? width;
   final double? height;
   const CachedNetworkAssetImage(
-      {Key? key,
+      {super.key,
       required this.imgPath,
       required this.fit,
       this.width,
-      this.height})
-      : super(key: key);
+      this.height});
 
   @override
   Widget build(BuildContext context) {

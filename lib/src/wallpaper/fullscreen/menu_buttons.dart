@@ -124,27 +124,29 @@ class _MenuButtonsState extends State<MenuButtons> {
     if (Platform.isIOS && await Permission.photosAddOnly.request().isGranted) {
       return true;
     }
-    if (context.mounted) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Permission'),
-          content: const Text(
-              'In order to save wallpaper, we need gallery permission'),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Dismiss')),
-            TextButton(
-                onPressed: () {
-                  openAppSettings();
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Open Settings'))
-          ],
-        ),
-      );
-    }
+
+    final context = this.context;
+    if (!context.mounted) return false;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Permission'),
+        content: const Text(
+            'In order to save wallpaper, we need gallery permission'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Dismiss')),
+          TextButton(
+              onPressed: () {
+                openAppSettings();
+                Navigator.of(context).pop();
+              },
+              child: const Text('Open Settings'))
+        ],
+      ),
+    );
 
     return false;
   }
@@ -154,22 +156,23 @@ class _MenuButtonsState extends State<MenuButtons> {
 
     if (!await _isPermissionGranted()) return;
 
-    if (context.mounted) {
-      final controller = EasyWallpaperController.of(context);
-      bool canSetOrDownload = true;
-      if (controller.onSetOrDownloadWallpaper != null) {
-        canSetOrDownload =
-            await controller.onSetOrDownloadWallpaper!.call(context);
-      }
+    BuildContext context = this.context;
+    if (!context.mounted) return;
 
-      if (context.mounted && canSetOrDownload) {
-        final boundary = widget.fullScreenGlobalKey.currentContext!
-            .findRenderObject()! as RenderRepaintBoundary;
-        final ui.Image image = await boundary.toImage();
-        final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-        final list = byteData!.buffer.asUint8List();
-        await _saveImage(list);
-      }
+    final controller = EasyWallpaperController.of(context);
+    bool canSetOrDownload = true;
+    if (controller.onSetOrDownloadWallpaper != null) {
+      canSetOrDownload =
+          await controller.onSetOrDownloadWallpaper!.call(context);
+    }
+
+    if (context.mounted && canSetOrDownload) {
+      final boundary = widget.fullScreenGlobalKey.currentContext!
+          .findRenderObject()! as RenderRepaintBoundary;
+      final ui.Image image = await boundary.toImage();
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      final list = byteData!.buffer.asUint8List();
+      await _saveImage(list);
     }
   }
 
@@ -188,6 +191,8 @@ class _MenuButtonsState extends State<MenuButtons> {
   }
 
   void _setWallpaper() async {
+    final context = this.context;
+
     final controller = EasyWallpaperController.of(context);
     int? location = await _showSetWallpaperDialog(controller);
     if (location == null) return;
@@ -208,9 +213,9 @@ class _MenuButtonsState extends State<MenuButtons> {
     await showCustomAlertDialog(
         _key.currentContext!, 'Info', 'Wallpaper is set to $locationStr');
 
-    if (context.mounted) {
-      controller.onTapEvent?.call(context, WallpaperEventAction.setWallpaper);
-    }
+    if (!context.mounted) return;
+
+    controller.onTapEvent?.call(context, WallpaperEventAction.setWallpaper);
   }
 
   Future<int?> _showSetWallpaperDialog(EasyWallpaperController controller) {

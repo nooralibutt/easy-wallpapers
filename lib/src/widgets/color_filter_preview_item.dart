@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class ColorFilterPreviewItem extends StatelessWidget {
   final ColorFilterData filter;
   final ValueChanged<ColorFilterData>? onTap;
-  const ColorFilterPreviewItem(this.filter, {this.onTap, Key? key})
-      : super(key: key);
+  const ColorFilterPreviewItem(this.filter, {this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {

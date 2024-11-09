@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 class FavouriteIcon extends StatefulWidget {
   final String wallpaperUrl;
-  const FavouriteIcon(this.wallpaperUrl, {Key? key}) : super(key: key);
+  const FavouriteIcon(this.wallpaperUrl, {super.key});
 
   @override
   State<FavouriteIcon> createState() => _FavouriteIconState();

@@ -1,5 +1,6 @@
-## 1.3.0
+## 1.3.0 (noor)
 * Updated dependencies
+* Fixes warnings
 
 ## 1.2.0
 * Update deprecated package
