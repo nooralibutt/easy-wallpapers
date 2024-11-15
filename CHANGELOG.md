@@ -1,3 +1,9 @@
+## 1.4.0 (noor)
+* Updated dependencies
+* Switched wallpaper manager package for android for latest support
+* Updated example project
+* Updated image saver package to gal package
+
 ## 1.3.0 (noor)
 * Updated dependencies
 * Fixes warnings

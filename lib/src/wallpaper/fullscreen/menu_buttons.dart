@@ -14,9 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:wallpaper_manager_plus/wallpaper_manager_plus.dart';
 
 class MenuButtons extends StatefulWidget {
   final FullScreenArguments arguments;
@@ -177,16 +177,15 @@ class _MenuButtonsState extends State<MenuButtons> {
   }
 
   Future<void> _saveImage(Uint8List list) async {
-    final Map<dynamic, dynamic> result =
-        await ImageGallerySaver.saveImage(list);
-    final bool isSuccess = result['isSuccess'] ?? false;
-    if (isSuccess) {
+    // Save Image with try-catch
+    try {
+      await Gal.putImageBytes(list);
+
       showCustomAlertDialog(
           _key.currentContext!, 'Downloaded', 'Wallpaper saved to gallery');
-    } else {
-      final String errorMessage = result['errorMessage'];
+    } on GalException catch (e) {
       showCustomAlertDialog(_key.currentContext!, 'Failed',
-          'Failed to save image to gallery. Please try later: $errorMessage');
+          'Failed to save image to gallery. Please try later: ${e.type.message}');
     }
   }
 
@@ -197,17 +196,23 @@ class _MenuButtonsState extends State<MenuButtons> {
     int? location = await _showSetWallpaperDialog(controller);
     if (location == null) return;
 
-    final arguments = widget.arguments;
-    final imagePath = await DefaultCacheManager()
-        .getSingleFile(arguments.list![arguments.selectedIndex!]);
-    await WallpaperManager.setWallpaperFromFile(imagePath.path, location);
-    String locationStr;
-    if (location == WallpaperManager.HOME_SCREEN) {
+    final String locationStr;
+    if (location == WallpaperManagerPlus.homeScreen) {
       locationStr = 'Home Screen';
-    } else if (location == WallpaperManager.LOCK_SCREEN) {
+    } else if (location == WallpaperManagerPlus.lockScreen) {
       locationStr = 'Lock Screen';
     } else {
       locationStr = 'Both Screens';
+    }
+
+    final arguments = widget.arguments;
+    final file = await DefaultCacheManager()
+        .getSingleFile(arguments.list![arguments.selectedIndex!]);
+    try {
+      await WallpaperManagerPlus().setWallpaper(file, location);
+    } on Exception catch (e) {
+      await showCustomAlertDialog(_key.currentContext!, 'Error',
+          'Unable to set wallpaper to $locationStr\nError: ${e.toString()}');
     }
 
     await showCustomAlertDialog(
@@ -232,7 +237,7 @@ class _MenuButtonsState extends State<MenuButtons> {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
               if (context.mounted && canSetOrDownload) {
-                Navigator.pop(context, WallpaperManager.HOME_SCREEN);
+                Navigator.pop(context, WallpaperManagerPlus.homeScreen);
               }
             },
             child: Row(
@@ -250,7 +255,7 @@ class _MenuButtonsState extends State<MenuButtons> {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
               if (context.mounted && canSetOrDownload) {
-                Navigator.pop(context, WallpaperManager.LOCK_SCREEN);
+                Navigator.pop(context, WallpaperManagerPlus.lockScreen);
               }
             },
             child: Row(
@@ -268,7 +273,7 @@ class _MenuButtonsState extends State<MenuButtons> {
                 await controller.onSetOrDownloadWallpaper?.call(context);
               }
               if (context.mounted && canSetOrDownload) {
-                Navigator.pop(context, WallpaperManager.BOTH_SCREEN);
+                Navigator.pop(context, WallpaperManagerPlus.bothScreens);
               }
             },
             child: Row(
