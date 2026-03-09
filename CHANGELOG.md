@@ -1,3 +1,6 @@
+## 26.0.0 (nasir)
+* Updated dependencies
+
 ## 1.4.0 (noor)
 * Updated dependencies
 * Switched wallpaper manager package for android for latest support

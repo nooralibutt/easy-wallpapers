@@ -8,7 +8,7 @@ final data = {
     "https://i.pinimg.com/564x/04/1f/84/041f844d07fdcce8498d44a31a57aed7.jpg",
     "https://wallpapercave.com/wp/wp7697442.jpg",
     "https://wallpapercave.com/wp/wp7697494.jpg",
-    "https://i.pinimg.com/564x/31/19/c3/3119c32ef4d9c4c01ae6ae4e8842dad3.jpg"
+    "https://i.pinimg.com/564x/31/19/c3/3119c32ef4d9c4c01ae6ae4e8842dad3.jpg",
   ],
   "Girls": [
     "https://i.pinimg.com/564x/66/13/cf/6613cfde049567427b2940c86dec5727.jpg",
@@ -17,7 +17,6 @@ final data = {
     "https://i.pinimg.com/564x/da/55/90/da55902ca3c29caaf6267a5cd6be8da6.jpg",
     "https://i.pinimg.com/564x/b5/7f/f2/b57ff21e5bfe3f554cb8dca962147607.jpg",
     "https://i.pinimg.com/750x/db/62/c8/db62c8cdf3785a7e932d86a7a535da4d.jpg",
-    "https://images.hdqwalls.com/download/anime-girl-in-art-exibition-4a-720x1280.jpg",
     "https://i.pinimg.com/564x/ac/38/2d/ac382ddca6dc3cbddf6b6409f1c77efb.jpg",
     "https://i.pinimg.com/564x/da/85/6f/da856fdd8005696ccd4350cfcc7a80e8.jpg",
     "https://i.pinimg.com/564x/6f/55/91/6f55917d8ab7e1a2bd521cbd5c67fe1f.jpg",
@@ -38,7 +37,7 @@ final data = {
     "https://i.pinimg.com/564x/08/ad/ae/08adae00dbc988c76fd4eb13198c0be1.jpg",
     "https://i.pinimg.com/564x/96/3d/2c/963d2cc0d6f82c5f4a24f595ccbfb781.jpg",
     "https://i.pinimg.com/564x/32/43/b7/3243b7bf78d4e5329c2e67d3a46a00ec.jpg",
-    "https://i.pinimg.com/564x/29/80/69/298069485f900c7c0dee575b1a1d9f81.jpg"
+    "https://i.pinimg.com/564x/29/80/69/298069485f900c7c0dee575b1a1d9f81.jpg",
   ],
   "Boys": [
     "https://i.pinimg.com/564x/56/02/8a/56028a10e3243009d52bc0a4f9df7e65.jpg",
@@ -177,7 +176,7 @@ final data = {
     "https://i.pinimg.com/564x/4d/32/7a/4d327ab2191eb4b6f2f245ebb5517c0e.jpg",
     "https://i.pinimg.com/564x/56/07/ff/5607ff1b09f45d185855f43061de97e5.jpg",
     "https://i.pinimg.com/564x/24/a7/d3/24a7d312ff29370b0891436172847d77.jpg",
-    "https://i.pinimg.com/564x/b9/5d/b1/b95db185d9236b2f54a41f795b897ba1.jpg"
+    "https://i.pinimg.com/564x/b9/5d/b1/b95db185d9236b2f54a41f795b897ba1.jpg",
   ],
   "Realistic": [
     "https://i.pinimg.com/564x/31/19/c3/3119c32ef4d9c4c01ae6ae4e8842dad3.jpg",
@@ -213,6 +212,6 @@ final data = {
     "https://i.pinimg.com/564x/4e/dd/ae/4eddae6c6d70fcd622a647728523d5c3.jpg",
     "https://i.pinimg.com/564x/fd/e6/56/fde656df4bb00cf7b99b4afadb2e3ee8.jpg",
     "https://i.pinimg.com/564x/b6/3b/c5/b63bc5ba11db25833bbf1cc7477047ff.jpg",
-    "https://i.pinimg.com/564x/cf/59/3a/cf593a4b9d1bc3103a5d31d46de4443a.jpg"
-  ]
+    "https://i.pinimg.com/564x/cf/59/3a/cf593a4b9d1bc3103a5d31d46de4443a.jpg",
+  ],
 };
