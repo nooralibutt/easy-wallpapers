@@ -10,8 +10,12 @@ const baseAssetUrlAndroid =
 const baseAssetUrlIos =
     'http://github.com/nooralibutt/easy-wallpapers/raw/master/assets/images/wallpapers/ios/';
 
-Future showCustomAlertDialog(BuildContext context, String title, String message,
-    [String? buttonTitle]) {
+Future showCustomAlertDialog(
+  BuildContext context,
+  String title,
+  String message, [
+  String? buttonTitle,
+]) {
   return showDialog(
     context: context,
     barrierDismissible: false,
@@ -41,20 +45,21 @@ class CachedNetworkAssetImage extends StatelessWidget {
   final BoxFit fit;
   final double? width;
   final double? height;
-  const CachedNetworkAssetImage(
-      {super.key,
-      required this.imgPath,
-      required this.fit,
-      this.width,
-      this.height});
+  const CachedNetworkAssetImage({
+    super.key,
+    required this.imgPath,
+    required this.fit,
+    this.width,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
     if (imgPath.startsWith('http')) {
       return CachedNetworkImage(
         imageUrl: imgPath,
-        placeholder: (_, __) => const WallpaperPlaceholder(),
-        errorWidget: (_, __, ___) => const WallpaperPlaceholder(),
+        placeholder: (_, _) => const WallpaperPlaceholder(),
+        errorWidget: (_, _, _) => const WallpaperPlaceholder(),
         fit: fit,
         width: width,
         height: height,
@@ -66,12 +71,16 @@ class CachedNetworkAssetImage extends StatelessWidget {
       fit: BoxFit.cover,
       width: double.infinity,
       height: double.infinity,
-      loadingBuilder: (BuildContext context, Widget child,
-          ImageChunkEvent? loadingProgress) {
-        if (loadingProgress == null) return child;
+      loadingBuilder:
+          (
+            BuildContext context,
+            Widget child,
+            ImageChunkEvent? loadingProgress,
+          ) {
+            if (loadingProgress == null) return child;
 
-        return const WallpaperPlaceholder();
-      },
+            return const WallpaperPlaceholder();
+          },
     );
   }
 }

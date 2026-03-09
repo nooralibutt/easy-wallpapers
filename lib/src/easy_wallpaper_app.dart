@@ -58,7 +58,10 @@ class EasyWallpaperApp extends StatelessWidget {
     if (!isCacheEnabled) {
       Prefs.instance.init();
       return _buildEasyWallpaperController(
-          wallpaperUrls, context, NetworkManager.getCategories(wallpaperUrls));
+        wallpaperUrls,
+        context,
+        NetworkManager.getCategories(wallpaperUrls),
+      );
     }
 
     return FutureBuilder(
@@ -73,7 +76,10 @@ class EasyWallpaperApp extends StatelessWidget {
           final wallpaperCategories = NetworkManager.getCategories(savedWalls);
 
           final child = _buildEasyWallpaperController(
-              savedWalls, context, wallpaperCategories);
+            savedWalls,
+            context,
+            wallpaperCategories,
+          );
           return child;
         }
 
@@ -84,9 +90,10 @@ class EasyWallpaperApp extends StatelessWidget {
   }
 
   EasyWallpaperController _buildEasyWallpaperController(
-      Map<String, dynamic> savedWalls,
-      BuildContext context,
-      List<WallpaperCategory>? wallpaperCategories) {
+    Map<String, dynamic> savedWalls,
+    BuildContext context,
+    List<WallpaperCategory>? wallpaperCategories,
+  ) {
     return EasyWallpaperController(
       wallpaperUrls: savedWalls,
       leadingTitle: leadingTitle,
@@ -110,10 +117,14 @@ class EasyWallpaperApp extends StatelessWidget {
               return _generatePage(const FavoriteWallpapersScreen());
             case CategoryScreen.routeName:
               return _generatePage(
-                  CategoryScreen(category: settings.arguments as String));
+                CategoryScreen(category: settings.arguments as String),
+              );
             case FullScreenView.routeName:
-              return _generatePage(FullScreenView(
-                  arguments: settings.arguments as FullScreenArguments));
+              return _generatePage(
+                FullScreenView(
+                  arguments: settings.arguments as FullScreenArguments,
+                ),
+              );
           }
           return null;
         },
@@ -121,10 +132,11 @@ class EasyWallpaperApp extends StatelessWidget {
     );
   }
 
-  Route _generatePage(child) => MaterialPageRoute(builder: (_) => child);
+  Route _generatePage(Widget child) => MaterialPageRoute(builder: (_) => child);
 
   static void launchApp(
     BuildContext context, {
+
     /// This [leadingTitle] will be added before main [title]
     final String? leadingTitle,
 
@@ -154,23 +166,22 @@ class EasyWallpaperApp extends StatelessWidget {
     /// automatically from the shared preferences and get all wallpapers from the
     /// cache from url as cache key
     final bool isCacheEnabled = true,
-  }) =>
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          fullscreenDialog: true,
-          builder: (context) => Scaffold(
-            body: EasyWallpaperApp(
-              leadingTitle: leadingTitle,
-              title: title,
-              bgImage: bgImage,
-              wallpaperUrls: wallpaperUrls,
-              placementBuilder: placementBuilder,
-              onTapEvent: onTapEvent,
-              onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
-              isCacheEnabled: isCacheEnabled,
-              isTrendingEnabled: isTrendingEnabled,
-            ),
-          ),
+  }) => Navigator.of(context).push(
+    MaterialPageRoute(
+      fullscreenDialog: true,
+      builder: (context) => Scaffold(
+        body: EasyWallpaperApp(
+          leadingTitle: leadingTitle,
+          title: title,
+          bgImage: bgImage,
+          wallpaperUrls: wallpaperUrls,
+          placementBuilder: placementBuilder,
+          onTapEvent: onTapEvent,
+          onSetOrDownloadWallpaper: onSetOrDownloadWallpaper,
+          isCacheEnabled: isCacheEnabled,
+          isTrendingEnabled: isTrendingEnabled,
         ),
-      );
+      ),
+    ),
+  );
 }

@@ -60,22 +60,26 @@ class _MenuButtonsState extends State<MenuButtons> {
               key: _key,
               items: [
                 CircularMenuItem(
-                    icon: Icons.home,
-                    color: Colors.black,
-                    onTap: _onTapHomeScreen),
+                  icon: Icons.home,
+                  color: Colors.black,
+                  onTap: _onTapHomeScreen,
+                ),
                 CircularMenuItem(
-                    icon: Icons.download_rounded,
-                    color: Colors.black,
-                    onTap: _saveToGallery),
+                  icon: Icons.download_rounded,
+                  color: Colors.black,
+                  onTap: _saveToGallery,
+                ),
                 if (Platform.isAndroid)
                   CircularMenuItem(
-                      icon: Icons.format_paint,
-                      color: Colors.black,
-                      onTap: _setWallpaper),
-                CircularMenuItem(
-                    icon: Icons.lock,
+                    icon: Icons.format_paint,
                     color: Colors.black,
-                    onTap: _onTapLockScreen),
+                    onTap: _setWallpaper,
+                  ),
+                CircularMenuItem(
+                  icon: Icons.lock,
+                  color: Colors.black,
+                  onTap: _onTapLockScreen,
+                ),
               ],
             ),
           ),
@@ -85,8 +89,9 @@ class _MenuButtonsState extends State<MenuButtons> {
   }
 
   Widget _buildLockScreenContainer(Duration animDuration) {
-    final icon =
-        Platform.isAndroid ? Icons.format_paint : Icons.download_rounded;
+    final icon = Platform.isAndroid
+        ? Icons.format_paint
+        : Icons.download_rounded;
     final onTap = Platform.isAndroid ? _setWallpaper : _saveToGallery;
     return AnimatedOpacity(
       duration: animDuration,
@@ -96,8 +101,9 @@ class _MenuButtonsState extends State<MenuButtons> {
   }
 
   Widget _buildHomeScreenContainer(Duration animDuration) {
-    final icon =
-        Platform.isAndroid ? Icons.format_paint : Icons.download_rounded;
+    final icon = Platform.isAndroid
+        ? Icons.format_paint
+        : Icons.download_rounded;
     final onTap = Platform.isAndroid ? _setWallpaper : _saveToGallery;
     return AnimatedOpacity(
       duration: animDuration,
@@ -106,8 +112,8 @@ class _MenuButtonsState extends State<MenuButtons> {
     );
   }
 
-  _onTapLockScreen() => setState(() => _showLockScreen = true);
-  _onTapHomeScreen() => setState(() => _showHomeScreen = true);
+  void _onTapLockScreen() => setState(() => _showLockScreen = true);
+  void _onTapHomeScreen() => setState(() => _showHomeScreen = true);
 
   Future<bool> _isPermissionGranted() async {
     if (Platform.isAndroid) {
@@ -133,17 +139,20 @@ class _MenuButtonsState extends State<MenuButtons> {
       builder: (BuildContext context) => AlertDialog(
         title: const Text('Permission'),
         content: const Text(
-            'In order to save wallpaper, we need gallery permission'),
+          'In order to save wallpaper, we need gallery permission',
+        ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Dismiss')),
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Dismiss'),
+          ),
           TextButton(
-              onPressed: () {
-                openAppSettings();
-                Navigator.of(context).pop();
-              },
-              child: const Text('Open Settings'))
+            onPressed: () {
+              openAppSettings();
+              Navigator.of(context).pop();
+            },
+            child: const Text('Open Settings'),
+          ),
         ],
       ),
     );
@@ -162,13 +171,15 @@ class _MenuButtonsState extends State<MenuButtons> {
     final controller = EasyWallpaperController.of(context);
     bool canSetOrDownload = true;
     if (controller.onSetOrDownloadWallpaper != null) {
-      canSetOrDownload =
-          await controller.onSetOrDownloadWallpaper!.call(context);
+      canSetOrDownload = await controller.onSetOrDownloadWallpaper!.call(
+        context,
+      );
     }
 
     if (context.mounted && canSetOrDownload) {
-      final boundary = widget.fullScreenGlobalKey.currentContext!
-          .findRenderObject()! as RenderRepaintBoundary;
+      final boundary =
+          widget.fullScreenGlobalKey.currentContext!.findRenderObject()!
+              as RenderRepaintBoundary;
       final ui.Image image = await boundary.toImage();
       final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       final list = byteData!.buffer.asUint8List();
@@ -182,10 +193,16 @@ class _MenuButtonsState extends State<MenuButtons> {
       await Gal.putImageBytes(list);
 
       showCustomAlertDialog(
-          _key.currentContext!, 'Downloaded', 'Wallpaper saved to gallery');
+        _key.currentContext!,
+        'Downloaded',
+        'Wallpaper saved to gallery',
+      );
     } on GalException catch (e) {
-      showCustomAlertDialog(_key.currentContext!, 'Failed',
-          'Failed to save image to gallery. Please try later: ${e.type.message}');
+      showCustomAlertDialog(
+        _key.currentContext!,
+        'Failed',
+        'Failed to save image to gallery. Please try later: ${e.type.message}',
+      );
     }
   }
 
@@ -206,17 +223,24 @@ class _MenuButtonsState extends State<MenuButtons> {
     }
 
     final arguments = widget.arguments;
-    final file = await DefaultCacheManager()
-        .getSingleFile(arguments.list![arguments.selectedIndex!]);
+    final file = await DefaultCacheManager().getSingleFile(
+      arguments.list![arguments.selectedIndex!],
+    );
     try {
       await WallpaperManagerPlus().setWallpaper(file, location);
     } on Exception catch (e) {
-      await showCustomAlertDialog(_key.currentContext!, 'Error',
-          'Unable to set wallpaper to $locationStr\nError: ${e.toString()}');
+      await showCustomAlertDialog(
+        _key.currentContext!,
+        'Error',
+        'Unable to set wallpaper to $locationStr\nError: ${e.toString()}',
+      );
     }
 
     await showCustomAlertDialog(
-        _key.currentContext!, 'Info', 'Wallpaper is set to $locationStr');
+      _key.currentContext!,
+      'Info',
+      'Wallpaper is set to $locationStr',
+    );
 
     if (!context.mounted) return;
 
