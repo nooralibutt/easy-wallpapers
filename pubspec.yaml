@@ -5,29 +5,28 @@ homepage: https://github.com/nooralibutt/easy-wallpapers
 repository: https://github.com/nooralibutt/easy-wallpapers
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.10.3
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  shared_preferences: ^2.3.3
-  device_info_plus: ^11.1.1
-  wallpaper_manager_plus: ^0.0.3
-  # to save wallpapers to gallery
-  gal: ^2.3.0
-  # to get storage permission from user for saving wallpapers
-  permission_handler: ^11.3.1
-  # to show menu in full screen of wallpapers
-  circular_menu: ^4.0.0
-  # to show lock screen in wallpapers
-  intl: ^0.19.0
   cached_network_image: ^3.4.1
+  circular_menu: ^4.0.0
+  device_info_plus: ^12.3.0
   flutter_cache_manager: ^3.4.1
+  gal: ^2.3.2
+  intl: ^0.20.2
+  permission_handler: ^12.0.1
+  shared_preferences: ^2.5.4
+  wallpaper_manager_plus: ^2.0.3
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
+
 
 flutter:
+
