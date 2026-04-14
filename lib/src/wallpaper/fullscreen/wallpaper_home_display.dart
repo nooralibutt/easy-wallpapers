@@ -25,14 +25,14 @@ class WallpaperHomeDisplay extends StatelessWidget {
     'Phone',
     'Photos',
     'Settings',
-    'Weather'
+    'Weather',
   ];
 
   static const List<String> androidIcons = [
     'Phone',
     'Messages',
     'Play Store',
-    'Chrome'
+    'Chrome',
   ];
 
   final IconData iconData;
@@ -48,7 +48,7 @@ class WallpaperHomeDisplay extends StatelessWidget {
     );
   }
 
-  _buildForAndroid() {
+  Widget _buildForAndroid() {
     return LockScreenContainer(
       iconData,
       onTap,
@@ -63,16 +63,17 @@ class WallpaperHomeDisplay extends StatelessWidget {
             runSpacing: 25,
             spacing: 20,
             children: List.generate(
-                androidIcons.length,
-                (index) =>
-                    DisplayWidget(androidIcons[index], imagePathBaseAndroid)),
-          )
+              androidIcons.length,
+              (index) =>
+                  DisplayWidget(androidIcons[index], imagePathBaseAndroid),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  _buildForIos() {
+  Widget _buildForIos() {
     return Column(
       children: [
         Expanded(
@@ -80,8 +81,10 @@ class WallpaperHomeDisplay extends StatelessWidget {
             alignment: WrapAlignment.center,
             runSpacing: 25,
             spacing: 30,
-            children: List.generate(iOSIcons.length,
-                (index) => DisplayWidget(iOSIcons[index], imagePathBaseIos)),
+            children: List.generate(
+              iOSIcons.length,
+              (index) => DisplayWidget(iOSIcons[index], imagePathBaseIos),
+            ),
           ),
         ),
         LockScreenContainer.getAnimatedPaintWidget(iconData, onTap),
@@ -107,10 +110,7 @@ class DisplayWidget extends StatelessWidget {
             children: [
               Image.network('$imagePath$name.png'),
               const VerticalSpacing(of: 5),
-              FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(name),
-              ),
+              FittedBox(fit: BoxFit.fitWidth, child: Text(name)),
             ],
           ),
         );
@@ -129,21 +129,19 @@ class GoogleSearchWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.85,
       height: 40,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30), color: Colors.black87),
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.black87,
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         children: [
-          Image.network(
-            '${baseAssetUrlAndroid}google_search.png',
-            height: 22,
-          ),
+          Image.network('${baseAssetUrlAndroid}google_search.png', height: 22),
           const Spacer(),
           Text(
             'Say "Hey Google"',
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Colors.white60),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge!.copyWith(color: Colors.white60),
           ),
         ],
       ),

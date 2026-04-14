@@ -6,9 +6,12 @@ class WallpaperPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).cardColor.withOpacity(0.5),
-      child: Icon(Icons.wallpaper,
-          size: 50, color: Theme.of(context).colorScheme.primary),
+      color: Theme.of(context).cardColor.withAlpha(127),
+      child: Icon(
+        Icons.wallpaper,
+        size: 50,
+        color: Theme.of(context).colorScheme.primary,
+      ),
     );
   }
 }

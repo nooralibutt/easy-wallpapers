@@ -98,8 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
           width: double.infinity,
           color: Colors.orange,
         );
-      default:
-        return const SizedBox();
     }
   }
 

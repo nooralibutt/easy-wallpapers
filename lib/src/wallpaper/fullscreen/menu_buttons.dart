@@ -111,8 +111,8 @@ class _MenuButtonsState extends State<MenuButtons> {
     );
   }
 
-  _onTapLockScreen() => setState(() => _showLockScreen = true);
-  _onTapHomeScreen() => setState(() => _showHomeScreen = true);
+  void _onTapLockScreen() => setState(() => _showLockScreen = true);
+  void _onTapHomeScreen() => setState(() => _showHomeScreen = true);
 
   // Future<bool> _isPermissionGranted() async {
   //   if (Platform.isAndroid) {
