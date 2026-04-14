@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:circular_menu/circular_menu.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:easy_wallpapers/easy_wallpapers.dart';
 import 'package:easy_wallpapers/src/easy_wallpaper_controller.dart';
 import 'package:easy_wallpapers/src/models/full_screen_arguments.dart';
@@ -115,49 +114,52 @@ class _MenuButtonsState extends State<MenuButtons> {
   void _onTapLockScreen() => setState(() => _showLockScreen = true);
   void _onTapHomeScreen() => setState(() => _showHomeScreen = true);
 
+  // Future<bool> _isPermissionGranted() async {
+  //   if (Platform.isAndroid) {
+  //     final androidInfo = await DeviceInfoPlugin().androidInfo;
+  //     if (androidInfo.version.sdkInt >= 33) {
+  //       if (await Permission.photos.request().isGranted) {
+  //         return true;
+  //       }
+  //     } else if (await Permission.storage.request().isGranted) {
+  //       return true;
+  //     }
+  //   }
+  //
+  //   if (Platform.isIOS && await Permission.photosAddOnly.request().isGranted) {
+  //     return true;
+  //   }
+  //
+  //   final context = this.context;
+  //   if (!context.mounted) return false;
+  //
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) => AlertDialog(
+  //       title: const Text('Permission'),
+  //       content: const Text(
+  //           'In order to save wallpaper, we need gallery permission'),
+  //       actions: [
+  //         TextButton(
+  //             onPressed: () => Navigator.of(context).pop(),
+  //             child: const Text('Dismiss')),
+  //         TextButton(
+  //             onPressed: () {
+  //               openAppSettings();
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: const Text('Open Settings'))
+  //       ],
+  //     ),
+  //   );
+  //
+  //   return false;
+  // }
   Future<bool> _isPermissionGranted() async {
-    if (Platform.isAndroid) {
-      final androidInfo = await DeviceInfoPlugin().androidInfo;
-      if (androidInfo.version.sdkInt >= 33) {
-        if (await Permission.photos.request().isGranted) {
-          return true;
-        }
-      } else if (await Permission.storage.request().isGranted) {
-        return true;
-      }
+    if (Platform.isIOS) {
+      return await Permission.photosAddOnly.request().isGranted;
     }
-
-    if (Platform.isIOS && await Permission.photosAddOnly.request().isGranted) {
-      return true;
-    }
-
-    final context = this.context;
-    if (!context.mounted) return false;
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text('Permission'),
-        content: const Text(
-          'In order to save wallpaper, we need gallery permission',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Dismiss'),
-          ),
-          TextButton(
-            onPressed: () {
-              openAppSettings();
-              Navigator.of(context).pop();
-            },
-            child: const Text('Open Settings'),
-          ),
-        ],
-      ),
-    );
-
-    return false;
+    return true;
   }
 
   Future<void> _saveToGallery() async {
@@ -190,7 +192,7 @@ class _MenuButtonsState extends State<MenuButtons> {
   Future<void> _saveImage(Uint8List list) async {
     // Save Image with try-catch
     try {
-      await Gal.putImageBytes(list);
+      await Gal.putImageBytes(list, album: 'Hacker Bot Wallpapers');
 
       showCustomAlertDialog(
         _key.currentContext!,

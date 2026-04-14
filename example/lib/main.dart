@@ -11,10 +11,6 @@ void main() async {
 
   await EasyAds.instance.initialize(
     const TestAdIdManager(),
-    fbiOSAdvertiserTrackingEnabled: true,
-    fbTestMode: true,
-    unityTestMode: true,
-    isAgeRestrictedUserForApplovin: false,
     admobConfiguration: RequestConfiguration(
       testDeviceIds: [],
       maxAdContentRating: MaxAdContentRating.pg,
@@ -117,10 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showRewardedAdAlertDialog(
       context,
       onWatchAd: () {
-        if (EasyAds.instance.showAd(
-          AdUnitType.rewarded,
-          adNetwork: AdNetwork.unity,
-        )) {
+        if (EasyAds.instance.showAd(AdUnitType.rewarded)) {
           _streamSubscription?.cancel();
           _streamSubscription = EasyAds.instance.onEvent.listen((event) {
             if (event.adUnitType == AdUnitType.rewarded) {
