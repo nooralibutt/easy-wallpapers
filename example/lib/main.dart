@@ -11,14 +11,14 @@ void main() async {
 
   await EasyAds.instance.initialize(
     const TestAdIdManager(),
-    fbiOSAdvertiserTrackingEnabled: true,
-    fbTestMode: true,
-    unityTestMode: true,
-    isAgeRestrictedUserForApplovin: false,
     admobConfiguration: RequestConfiguration(
-        testDeviceIds: [], maxAdContentRating: MaxAdContentRating.pg),
-    adMobAdRequest:
-        const AdRequest(nonPersonalizedAds: false, keywords: <String>[]),
+      testDeviceIds: [],
+      maxAdContentRating: MaxAdContentRating.pg,
+    ),
+    adMobAdRequest: const AdRequest(
+      nonPersonalizedAds: false,
+      keywords: <String>[],
+    ),
   );
   runApp(const MyApp());
 }
@@ -94,7 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
         return Container(height: 50, width: double.infinity, color: Colors.red);
       case WallpaperPlacement.wallpaperCategoryTop:
         return Container(
-            height: 50, width: double.infinity, color: Colors.orange);
+          height: 50,
+          width: double.infinity,
+          color: Colors.orange,
+        );
       default:
         return const SizedBox();
     }
@@ -112,8 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showRewardedAdAlertDialog(
       context,
       onWatchAd: () {
-        if (EasyAds.instance
-            .showAd(AdUnitType.rewarded, adNetwork: AdNetwork.unity)) {
+        if (EasyAds.instance.showAd(AdUnitType.rewarded)) {
           _streamSubscription?.cancel();
           _streamSubscription = EasyAds.instance.onEvent.listen((event) {
             if (event.adUnitType == AdUnitType.rewarded) {
@@ -125,8 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           });
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('No ad available right now, please try later')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No ad available right now, please try later'),
+            ),
+          );
           completer.complete(false);
         }
       },
@@ -141,8 +146,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<bool?> showRewardedAdAlertDialog(BuildContext context,
-      {required VoidCallback onWatchAd, required VoidCallback onClickNo}) {
+  Future<bool?> showRewardedAdAlertDialog(
+    BuildContext context, {
+    required VoidCallback onWatchAd,
+    required VoidCallback onClickNo,
+  }) {
     return showDialog<bool>(
       context: context,
       barrierDismissible: false,
@@ -164,8 +172,9 @@ class _MyHomePageState extends State<MyHomePage> {
         // set up the AlertDialog
         AlertDialog alert = AlertDialog(
           title: const Text('Download!'),
-          content:
-              const Text('Would you like to watch rewarded ad to download?'),
+          content: const Text(
+            'Would you like to watch rewarded ad to download?',
+          ),
           actions: [no, yes],
         );
         return alert;
