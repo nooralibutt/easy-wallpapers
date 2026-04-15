@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  easy_ads_flutter: ^26.0.0
+  easy_ads_flutter: ^26.3.12
   easy_wallpapers:
     path: ../
 
