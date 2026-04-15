@@ -1,3 +1,6 @@
+## 26.0.2 (nasir)
+* Updated dependencies
+
 ## 26.0.1 (nasir)
 * Removed unwanted and unused permissions from AndroidManifest to improve Play Store compliance and app privacy.
 * Updated dependencies
